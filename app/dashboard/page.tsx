@@ -68,6 +68,7 @@ export default async function DashboardPage() {
               Last notification status:{" "}
               <StatusBadge value={summary.lastNotificationStatus} />
             </p>
+            <p>Mailer configured: {process.env.SMTP_HOST ? "yes" : "no"}</p>
           </article>
 
           <article className="panel">
@@ -78,6 +79,20 @@ export default async function DashboardPage() {
               )) ?? <li>No rules configured</li>}
             </ul>
           </article>
+        </section>
+
+        <section className="panel">
+          <p className="label">Notification runbook</p>
+          <ul className="list">
+            <li>`POST /api/quotas/evaluate` recalculates weekly shortfalls.</li>
+            <li>
+              `POST /api/notifications/process` queues and sends pending emails.
+            </li>
+            <li>
+              Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and
+              `ALERT_EMAIL_FROM` to enable delivery.
+            </li>
+          </ul>
         </section>
       </div>
     </main>

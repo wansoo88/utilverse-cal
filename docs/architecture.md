@@ -344,6 +344,8 @@ project-root/
 - Search Console 수집도 통합 레이어를 통해서만 처리한다.
 - 이메일 발송은 `lib/integrations/mailer.ts`를 통해서만 처리한다.
 - 주간 할당량 계산은 `quota-service.ts`가 담당한다.
+- `POST /api/quotas/evaluate`가 부족분 경고를 계산한다.
+- `POST /api/notifications/process`가 큐에 쌓인 메일을 실제 발송한다.
 
 ## 확장 방향
 
@@ -359,6 +361,13 @@ project-root/
 - 리프레시 추천 로직
 - 템플릿 기반 반자동 리라이트
 - 주간 부족분 메일 자동 발송
+
+## 현재 검증 상태
+
+- `npm run build` 통과
+- SQLite 생성 및 seed 완료
+- 할당량 평가와 알림 큐 처리 실행 확인
+- SMTP 미설정 환경에서는 알림 로그가 `SKIPPED`로 기록되는 것 확인
 
 ### 3차
 

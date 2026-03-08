@@ -70,6 +70,7 @@
 - 이벤트별 알림 on/off
 - 최근 발송 로그
 - 실패한 메일 재시도
+- SMTP 설정 상태 표시
 
 ### 8. Monitor
 
@@ -91,12 +92,22 @@
 
 - 기본 수신자: `kimcomplete8888@gmail.com`
 - 채널 타입: 이메일
+- 발송 방식: SMTP
 - 기본 이벤트:
 - `WEEKLY_DRAFT_SHORTFALL`
 - `WEEKLY_APPROVAL_SHORTFALL`
 - `WEEKLY_PUBLISH_SHORTFALL`
 - `PUBLISH_FAILURE`
 - `WEEKLY_SUMMARY`
+
+### 필요한 환경변수
+
+- `ALERT_EMAIL_TO`
+- `ALERT_EMAIL_FROM`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
 
 ## 자동화 규칙
 
@@ -110,6 +121,7 @@
 - 리포트 요약
 - 주간 부족분 계산
 - 알림 메일 큐 적재
+- SMTP 메일 발송
 
 ### 수동 유지
 
@@ -170,3 +182,10 @@
 6. Publish Queue
 7. Notification Center
 8. Monitor
+
+## 현재 구현 상태
+
+- 주간 할당량 평가 API 구현
+- 알림 큐 처리 API 구현
+- SMTP 메일러 구현
+- SMTP 미설정 시 `SKIPPED` 로그 처리 확인

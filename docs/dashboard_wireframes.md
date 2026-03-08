@@ -41,6 +41,7 @@
 | Primary email: kimcomplete8888@gmail.com                                         |
 | Last sent: Weekly Draft Shortfall - SENT                                         |
 | Failed notifications: 0                                                          |
+| SMTP configured: yes/no                                                          |
 +----------------------------------------------------------------------------------+
 ```
 
@@ -128,3 +129,4 @@ Action needed: Reconnect Blogger credentials and retry
 3. 알림 센터
 4. 메일 로그 표시
 5. 모니터링 카드
+6. 메일 발송 실행 버튼
