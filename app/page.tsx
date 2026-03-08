@@ -11,9 +11,14 @@ export default function HomePage() {
             This app manages draft production, human review, publish scheduling,
             and email alerts for the Blogger operation.
           </p>
-          <p>
-            <Link href="/dashboard">Open dashboard</Link>
-          </p>
+          <div className="actions">
+            <Link className="button-link primary" href="/dashboard">
+              Open dashboard
+            </Link>
+            <Link className="button-link" href="/guide">
+              How to use
+            </Link>
+          </div>
         </section>
       </div>
     </main>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDashboardSummary } from "@/lib/services/dashboard-service";
 import { getPrimaryNotificationChannel } from "@/lib/services/notification-service";
 
@@ -24,6 +25,11 @@ export default async function DashboardPage() {
             Track draft quota, review backlog, publish output, and the latest
             email alert status from one screen.
           </p>
+          <div className="actions">
+            <Link className="button-link" href="/guide">
+              Open guide
+            </Link>
+          </div>
         </section>
 
         <section className="grid grid-2">

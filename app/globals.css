@@ -94,3 +94,37 @@ a {
   padding-left: 18px;
   margin: 0;
 }
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #f3ede2;
+  font-weight: 700;
+}
+
+.button-link.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.section-stack {
+  display: grid;
+  gap: 20px;
+}
+
+.code-inline {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+}
