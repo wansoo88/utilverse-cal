@@ -82,6 +82,11 @@ export default function GuidePage() {
                 If SMTP is missing, notification processing still runs but logs
                 are marked as <span className="code-inline">SKIPPED</span>.
               </li>
+              <li>
+                For AI drafts, also set{" "}
+                <span className="code-inline">GEMINI_API_KEY</span> and
+                optionally <span className="code-inline">GEMINI_MODEL</span>.
+              </li>
             </ul>
           </article>
         </section>
@@ -103,6 +108,7 @@ export default function GuidePage() {
               <li>Reviews: 6 per week</li>
               <li>Publishes: 5 to 7 per week</li>
               <li>Shortfalls create alerts and queue email notifications</li>
+              <li>Queued posts can be drafted directly from the Keywords or Pipeline pages</li>
             </ul>
           </article>
         </section>

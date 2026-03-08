@@ -302,6 +302,8 @@ AdSense 승인 시도 전까지 `최소 24개 게시글 + 필수 페이지 5개`
 - 수신 주소: `kimcomplete8888@gmail.com`
 - 발송 경로: SMTP
 - 실행 API: `POST /api/quotas/evaluate`, `POST /api/notifications/process`
+- 초안 생성: Gemini
+- 발행 연동: Blogger API
 
 ### 품질 모니터링
 
@@ -452,3 +454,12 @@ AdSense 승인 시도 전까지 `최소 24개 게시글 + 필수 페이지 5개`
 - 값이 없으면 알림 로그는 `SKIPPED`로 기록된다.
 - 운영자는 주 1회 이상 Notification Center에서 실패 로그를 확인한다.
 - 현재 구현 검증 결과: 할당량 평가 후 알림 3건이 생성되었고, SMTP 미설정 상태에서 3건 모두 `SKIPPED` 처리됨
+
+## 17. 현재 구현 상태
+
+- Dashboard, Keywords, Pipeline, Review, Publish, Notifications, Settings 화면 구현
+- 키워드 등록 후 포스트 레코드 생성 가능
+- Gemini 초안 생성 서버 액션 구현
+- 검수 승인 및 스케줄링 구현
+- Blogger API 발행 코드 구현
+- SMTP 기반 알림 처리 구현

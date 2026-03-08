@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getDashboardSummary } from "@/lib/services/dashboard-service";
 import { getPrimaryNotificationChannel } from "@/lib/services/notification-service";
+import { listPostsByStatus } from "@/lib/services/post-service";
 
 function StatusBadge({ value }: { value: string }) {
   const className =
@@ -14,24 +15,38 @@ function StatusBadge({ value }: { value: string }) {
 export default async function DashboardPage() {
   const summary = await getDashboardSummary();
   const channel = await getPrimaryNotificationChannel();
+  const posts = await listPostsByStatus();
+  const reviewCount = posts.filter((post) => post.status === "REVIEW").length;
+  const queuedCount = posts.filter((post) => post.status === "QUEUED").length;
+  const approvedCount = posts.filter((post) => post.status === "APPROVED").length;
+  const scheduledCount = posts.filter((post) => post.status === "SCHEDULED").length;
 
   return (
-    <main className="page-shell">
-      <div className="container grid" style={{ gap: 24 }}>
-        <section className="hero">
-          <p className="label">Blogger Ops Dashboard</p>
-          <h1>Weekly quota and alert center</h1>
-          <p>
-            Track draft quota, review backlog, publish output, and the latest
-            email alert status from one screen.
-          </p>
-          <div className="actions">
-            <Link className="button-link" href="/guide">
-              Open guide
-            </Link>
-          </div>
-        </section>
+    <div className="grid" style={{ gap: 24 }}>
+      <section className="grid grid-2 grid-4">
+        <article className="panel accent-panel">
+          <p className="label">Review queue</p>
+          <div className="metric">{reviewCount}</div>
+          <p>Posts waiting for final human review.</p>
+        </article>
+        <article className="panel">
+          <p className="label">Queued drafts</p>
+          <div className="metric">{queuedCount}</div>
+          <p>Posts ready for Gemini draft generation.</p>
+        </article>
+        <article className="panel">
+          <p className="label">Approved posts</p>
+          <div className="metric">{approvedCount}</div>
+          <p>Ready to schedule for Blogger publishing.</p>
+        </article>
+        <article className="panel">
+          <p className="label">Scheduled posts</p>
+          <div className="metric">{scheduledCount}</div>
+          <p>Tracked publish jobs in the local pipeline.</p>
+        </article>
+      </section>
 
+      <section className="grid grid-2">
         <section className="grid grid-2">
           <article className="panel">
             <p className="label">Week</p>
@@ -86,21 +101,40 @@ export default async function DashboardPage() {
             </ul>
           </article>
         </section>
+      </section>
 
-        <section className="panel">
+      <section className="grid grid-2">
+        <article className="panel">
+          <p className="label">Workflow links</p>
+          <div className="actions">
+            <Link className="button-link primary" href="/dashboard/keywords">
+              Manage keywords
+            </Link>
+            <Link className="button-link" href="/dashboard/pipeline">
+              Open pipeline
+            </Link>
+            <Link className="button-link" href="/dashboard/review">
+              Review drafts
+            </Link>
+            <Link className="button-link" href="/dashboard/publish">
+              Publish queue
+            </Link>
+            <Link className="button-link" href="/dashboard/settings">
+              Settings
+            </Link>
+          </div>
+        </article>
+
+        <article className="panel">
           <p className="label">Notification runbook</p>
           <ul className="list">
             <li>`POST /api/quotas/evaluate` recalculates weekly shortfalls.</li>
-            <li>
-              `POST /api/notifications/process` queues and sends pending emails.
-            </li>
-            <li>
-              Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and
-              `ALERT_EMAIL_FROM` to enable delivery.
-            </li>
+            <li>`POST /api/notifications/process` sends pending emails.</li>
+            <li>Gemini draft generation requires `GEMINI_API_KEY`.</li>
+            <li>SMTP delivery requires all SMTP variables in `.env.local`.</li>
           </ul>
-        </section>
-      </div>
-    </main>
+        </article>
+      </section>
+    </div>
   );
 }

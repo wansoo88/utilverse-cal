@@ -7,7 +7,7 @@
 ## 제품 개요
 
 - 사용 형태: `localhost`에서 실행하는 단일 사용자 관리자 도구
-- 주요 기능: 콘텐츠 파이프라인 관리, 주간 할당량 추적, 사람 승인, Blogger 발행, Search Console 모니터링, 이메일 알림
+- 주요 기능: 콘텐츠 파이프라인 관리, Gemini 초안 생성, 주간 할당량 추적, 사람 승인, Blogger 발행, Search Console 모니터링, 이메일 알림
 - 데이터 저장: SQLite 단일 파일
 
 ## 핵심 화면
@@ -40,6 +40,7 @@
 - 우선순위 지정
 - 상태 변경
 - 주차 할당
+- 포스트 레코드 생성
 
 ### 4. Draft Studio
 
@@ -49,6 +50,7 @@
 - FAQ 자동 생성
 - 메타 설명 생성
 - 내부링크 추천
+- Gemini draft generation
 
 ### 5. Review Queue
 
@@ -104,6 +106,10 @@
 
 - `ALERT_EMAIL_TO`
 - `ALERT_EMAIL_FROM`
+- `GEMINI_API_KEY`
+- `GEMINI_MODEL`
+- `BLOGGER_BLOG_ID`
+- `BLOGGER_ACCESS_TOKEN`
 - `SMTP_HOST`
 - `SMTP_PORT`
 - `SMTP_USER`
@@ -122,6 +128,8 @@
 - 주간 부족분 계산
 - 알림 메일 큐 적재
 - SMTP 메일 발송
+- Gemini REST draft generation
+- Blogger API publishing
 
 ### 수동 유지
 
@@ -189,3 +197,6 @@
 - 알림 큐 처리 API 구현
 - SMTP 메일러 구현
 - SMTP 미설정 시 `SKIPPED` 로그 처리 확인
+- Keywords, Pipeline, Review, Publish, Settings 화면 구현
+- Gemini draft generation 서버 액션 구현
+- Blogger publish integration 구현

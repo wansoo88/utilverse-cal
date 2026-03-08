@@ -19,7 +19,7 @@
 - 서버 로직: Next.js Route Handlers + Server Actions
 - ORM: Prisma
 - 로컬 DB: SQLite
-- 외부 연동: Blogger API, Search Console API, GA4 API(선택), SMTP 또는 Gmail API
+- 외부 연동: Blogger API, Gemini API, Search Console API, GA4 API(선택), SMTP 또는 Gmail API
 - 배포 형태: 우선 `localhost` 웹앱, 필요 시 `.exe` 패키징
 
 ### 상위 구조
@@ -37,6 +37,7 @@
 - 운영자는 1명이므로 멀티유저 인증은 우선순위가 낮다.
 - 데이터는 네트워크 DB가 아니라 로컬 단일 DB 파일로 관리한다.
 - 자동화는 초안 생성까지, 발행은 사람 승인 후 진행한다.
+- Gemini 초안 생성은 웹 UI와 서버 액션에서 직접 실행한다.
 - Blogger 내부 상태보다 로컬 DB 상태를 기준으로 운영한다.
 - 주간 할당량 미달은 DB에서 계산하고 이메일 알림으로 통지한다.
 
@@ -86,14 +87,12 @@ project-root/
 │   ├── db.ts                         # Prisma client
 │   ├── services/
 │   │   ├── keyword-service.ts
-│   │   ├── draft-service.ts
-│   │   ├── review-service.ts
-│   │   ├── publish-service.ts
-│   │   ├── monitor-service.ts
+│   │   ├── post-service.ts
 │   │   ├── quota-service.ts
 │   │   └── notification-service.ts
 │   ├── integrations/
 │   │   ├── blogger.ts
+│   │   ├── gemini.ts
 │   │   ├── search-console.ts
 │   │   ├── ga4.ts
 │   │   └── mailer.ts
@@ -127,8 +126,7 @@ project-root/
 
 ```text
 [Keyword]
-  -> [AI outline generation]
-  -> [AI draft generation]
+  -> [Gemini draft generation]
   -> [Local DB save]
   -> [Human review]
   -> [Approved]
@@ -346,6 +344,7 @@ project-root/
 - 주간 할당량 계산은 `quota-service.ts`가 담당한다.
 - `POST /api/quotas/evaluate`가 부족분 경고를 계산한다.
 - `POST /api/notifications/process`가 큐에 쌓인 메일을 실제 발송한다.
+- Keywords, Pipeline, Review, Publish, Settings는 웹 UI와 서버 액션으로 직접 동작한다.
 
 ## 확장 방향
 
@@ -368,6 +367,8 @@ project-root/
 - SQLite 생성 및 seed 완료
 - 할당량 평가와 알림 큐 처리 실행 확인
 - SMTP 미설정 환경에서는 알림 로그가 `SKIPPED`로 기록되는 것 확인
+- Gemini 기반 드래프트 생성 UI와 파이프라인 UI 추가
+- Blogger 발행 연동 코드 추가
 
 ### 3차
 
