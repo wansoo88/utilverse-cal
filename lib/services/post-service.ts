@@ -311,5 +311,6 @@ export async function touchPaths() {
   revalidatePath('/dashboard/notifications')
   revalidatePath('/dashboard/settings')
   revalidatePath('/dashboard/progress')
+  revalidatePath('/dashboard/monitor')
   revalidatePath('/dashboard/playbook')
 }

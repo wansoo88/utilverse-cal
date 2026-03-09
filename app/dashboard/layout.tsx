@@ -7,6 +7,7 @@ const links = [
   { href: "/dashboard/pipeline", label: "Pipeline" },
   { href: "/dashboard/review", label: "Review" },
   { href: "/dashboard/publish", label: "Publish" },
+  { href: "/dashboard/monitor", label: "Monitor" },
   { href: "/dashboard/notifications", label: "Alerts" },
   { href: "/dashboard/settings", label: "Settings" },
   { href: "/dashboard/playbook", label: "Playbook" },

@@ -14,6 +14,7 @@ import { processPendingNotifications, queueWeeklySummary } from '@/lib/services/
 import { evaluateWeeklyQuota } from '@/lib/services/quota-service'
 import { autoScheduleApprovedPosts } from '@/lib/services/scheduler-service'
 import { createBloggerPage, REQUIRED_PAGES } from '@/lib/integrations/blogger'
+import { syncMetricsForPublishedPosts } from '@/lib/integrations/search-console'
 
 export async function createKeywordAction(formData: FormData) {
   const keyword = String(formData.get('keyword') ?? '').trim()
@@ -119,5 +120,10 @@ export async function createRequiredPagesAction(formData: FormData) {
     contentHtml: page.html,
   })
 
+  await touchPaths()
+}
+
+export async function syncMetricsAction() {
+  await syncMetricsForPublishedPosts()
   await touchPaths()
 }
