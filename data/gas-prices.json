@@ -1,0 +1,64 @@
+{
+  "us": {
+    "unit": "per_gallon",
+    "states": [
+      { "code": "AL", "price": 3.05 }, { "code": "AK", "price": 3.85 },
+      { "code": "AZ", "price": 3.45 }, { "code": "AR", "price": 2.95 },
+      { "code": "CA", "price": 4.65 }, { "code": "CO", "price": 3.25 },
+      { "code": "CT", "price": 3.55 }, { "code": "DE", "price": 3.15 },
+      { "code": "FL", "price": 3.25 }, { "code": "GA", "price": 3.05 },
+      { "code": "HI", "price": 4.85 }, { "code": "ID", "price": 3.35 },
+      { "code": "IL", "price": 3.55 }, { "code": "IN", "price": 3.25 },
+      { "code": "IA", "price": 3.05 }, { "code": "KS", "price": 2.95 },
+      { "code": "KY", "price": 3.05 }, { "code": "LA", "price": 2.95 },
+      { "code": "ME", "price": 3.45 }, { "code": "MD", "price": 3.35 },
+      { "code": "MA", "price": 3.45 }, { "code": "MI", "price": 3.35 },
+      { "code": "MN", "price": 3.15 }, { "code": "MS", "price": 2.95 },
+      { "code": "MO", "price": 2.95 }, { "code": "MT", "price": 3.35 },
+      { "code": "NE", "price": 3.05 }, { "code": "NV", "price": 3.85 },
+      { "code": "NH", "price": 3.35 }, { "code": "NJ", "price": 3.25 },
+      { "code": "NM", "price": 3.15 }, { "code": "NY", "price": 3.55 },
+      { "code": "NC", "price": 3.05 }, { "code": "ND", "price": 3.05 },
+      { "code": "OH", "price": 3.15 }, { "code": "OK", "price": 2.85 },
+      { "code": "OR", "price": 3.75 }, { "code": "PA", "price": 3.45 },
+      { "code": "RI", "price": 3.45 }, { "code": "SC", "price": 3.05 },
+      { "code": "SD", "price": 3.05 }, { "code": "TN", "price": 2.95 },
+      { "code": "TX", "price": 2.95 }, { "code": "UT", "price": 3.35 },
+      { "code": "VT", "price": 3.45 }, { "code": "VA", "price": 3.15 },
+      { "code": "WA", "price": 3.95 }, { "code": "WV", "price": 3.15 },
+      { "code": "WI", "price": 3.15 }, { "code": "WY", "price": 3.25 }
+    ]
+  },
+  "gb": { "unit": "per_liter", "price": 1.52 },
+  "de": { "unit": "per_liter", "price": 1.78 },
+  "no": { "unit": "per_liter", "price": 18.5 },
+  "nl": { "unit": "per_liter", "price": 1.95 },
+  "fr": { "unit": "per_liter", "price": 1.82 },
+  "cn": {
+    "unit": "per_liter",
+    "cities": [
+      { "code": "beijing", "price": 7.58 },
+      { "code": "shanghai", "price": 7.58 },
+      { "code": "shenzhen", "price": 7.58 },
+      { "code": "guangzhou", "price": 7.58 }
+    ]
+  },
+  "au": {
+    "unit": "per_liter",
+    "states": [
+      { "code": "NSW", "price": 1.85 }, { "code": "VIC", "price": 1.82 },
+      { "code": "QLD", "price": 1.78 }, { "code": "SA", "price": 1.88 },
+      { "code": "WA", "price": 1.92 }, { "code": "TAS", "price": 1.85 },
+      { "code": "ACT", "price": 1.82 }, { "code": "NT", "price": 1.95 }
+    ]
+  },
+  "ca": {
+    "unit": "per_liter",
+    "provinces": [
+      { "code": "ON", "price": 1.52 }, { "code": "BC", "price": 1.85 },
+      { "code": "QC", "price": 1.62 }, { "code": "AB", "price": 1.42 },
+      { "code": "MB", "price": 1.45 }, { "code": "SK", "price": 1.48 },
+      { "code": "NS", "price": 1.55 }, { "code": "NB", "price": 1.52 }
+    ]
+  }
+}
