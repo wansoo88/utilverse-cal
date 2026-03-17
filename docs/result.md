@@ -166,7 +166,16 @@ utilverse-cal/
 
 ## Phase 3: 3D Printing Cost Calculator + 프로그래매틱 확장
 
-> 상태: 대기
+> 상태: 🔄 진행 중 — 3D Printing Calculator 완료, 프로그래매틱 확장 대기
+
+### 완료 항목
+- [x] lib/printing/types.ts — FilamentType, PrintCostInput, PrintCostResult 타입
+- [x] lib/printing/calculations.ts — 재료비, 전기비, 감가상각, 실패 마진, 판매가 계산
+- [x] data/filaments.json — 12종 필라멘트 (PLA, ABS, PETG, TPU, Nylon, ASA, PLA+, Resin 2종, CF PLA, Wood PLA, Custom)
+- [x] app/3d-printing-cost-calculator/page.tsx — SSG 페이지, JSON-LD, 가이드 텍스트 800자+, FAQ 5개
+- [x] app/3d-printing-cost-calculator/printing-calculator.tsx — 필라멘트 선택, 무게/시간/프린터가격/전기요금/와트/실패율 입력, 결과 카드, 판매가 제안
+- [x] app/3d-printing-cost-calculator/cost-pie-chart.tsx — Recharts PieChart 비용 분석
+- [x] 빌드 성공 확인
 
 ---
 

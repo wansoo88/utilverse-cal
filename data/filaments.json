@@ -1,0 +1,14 @@
+[
+  { "id": "pla", "name": "PLA", "density": 1.24, "avgPricePerKg": 22 },
+  { "id": "abs", "name": "ABS", "density": 1.04, "avgPricePerKg": 24 },
+  { "id": "petg", "name": "PETG", "density": 1.27, "avgPricePerKg": 25 },
+  { "id": "tpu", "name": "TPU (Flexible)", "density": 1.21, "avgPricePerKg": 35 },
+  { "id": "nylon", "name": "Nylon", "density": 1.14, "avgPricePerKg": 40 },
+  { "id": "asa", "name": "ASA", "density": 1.07, "avgPricePerKg": 28 },
+  { "id": "pla-plus", "name": "PLA+", "density": 1.24, "avgPricePerKg": 25 },
+  { "id": "resin-standard", "name": "Resin (Standard)", "density": 1.10, "avgPricePerKg": 35 },
+  { "id": "resin-abs-like", "name": "Resin (ABS-like)", "density": 1.12, "avgPricePerKg": 45 },
+  { "id": "carbon-fiber-pla", "name": "Carbon Fiber PLA", "density": 1.30, "avgPricePerKg": 45 },
+  { "id": "wood-pla", "name": "Wood PLA", "density": 1.15, "avgPricePerKg": 30 },
+  { "id": "custom", "name": "Custom", "density": 1.24, "avgPricePerKg": 25 }
+]
