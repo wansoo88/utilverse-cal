@@ -152,7 +152,15 @@ utilverse-cal/
 
 ## Phase 2: Air Fryer Conversion Calculator
 
-> 상태: 대기
+> 상태: ✅ 완료
+
+### 완료 항목
+- [x] lib/airfryer/types.ts — CookingMethod, ConversionResult, FoodPreset 타입
+- [x] lib/airfryer/conversions.ts — 5-way 변환 로직 (Oven↔Air Fryer↔Convection↔Instant Pot↔Slow Cooker), °F/°C 변환
+- [x] data/food-presets.json — 20개 인기 음식 프리셋 (Poultry, Meat, Seafood, Vegetables, Sides, Frozen)
+- [x] app/air-fryer-calculator/page.tsx — SSG 페이지, JSON-LD (WebApplication + FAQPage), 가이드 텍스트 800자+, FAQ 5개
+- [x] app/air-fryer-calculator/airfryer-calculator.tsx — 프리셋 선택 (카테고리 필터), 5-way 변환 UI, °F/°C 토글, 방향 스왑, 결과+팁, 비교 테이블
+- [x] 빌드 성공 확인
 
 ---
 
