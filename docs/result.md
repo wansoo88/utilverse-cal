@@ -5,7 +5,7 @@
 
 ---
 
-## 현재 단계: Phase 1 진행 중 (Week 3 완료 → Week 4 대기)
+## 현재 단계: Phase 5 완료 → Phase 6 대기
 
 ### 완료 항목
 - [x] plan.md 분석 완료
@@ -49,7 +49,7 @@
 utilverse-cal/
 ├── app/
 │   ├── layout.tsx                          ✅ Phase 0
-│   ├── page.tsx                            ✅ Phase 0
+│   ├── page.tsx                            ✅ Phase 0 (Unit Converter 카드 추가)
 │   ├── globals.css                         ✅ Phase 0
 │   ├── not-found.tsx                       ✅ Phase 0
 │   ├── favicon.ico                         ✅
@@ -59,38 +59,40 @@ utilverse-cal/
 │   │   └── contact-form.tsx                ✅ Phase 0
 │   ├── privacy-policy/page.tsx             ✅ Phase 0
 │   ├── terms/page.tsx                      ✅ Phase 0
-│   └── ev-charging-cost-calculator/        ✅ Phase 1 (Week 3)
+│   └── ev-charging-cost-calculator/        ✅ Phase 1 (Week 3+4)
 │       ├── page.tsx                        ✅ SSG + JSON-LD + FAQ + 가이드
 │       ├── ev-calculator.tsx               ✅ 9개 지역, 38대 차종, 충전비율
-│       └── cost-chart.tsx                  ✅ Recharts EV vs Gas 바 차트
-├── components/
-│   ├── analytics/ga4.tsx                   ✅ Phase 0
-│   └── layout/
-│       ├── header.tsx                      ✅ Phase 0
-│       ├── footer.tsx                      ✅ Phase 0
-│       ├── theme-provider.tsx              ✅ Phase 0
-│       └── theme-toggle.tsx                ✅ Phase 0
+│       ├── cost-chart.tsx                  ✅ Recharts EV vs Gas 바 차트
+│       ├── charger-map.tsx                 ✅ ChargerFinderMap
+│       └── leaflet-map.tsx                 ✅ Leaflet 맵 (dynamic import)
+│   ├── air-fryer-calculator/
+│   │   ├── page.tsx                        ✅ Phase 2
+│   │   ├── airfryer-calculator.tsx         ✅ Phase 2
+│   │   └── [slug]/page.tsx                 ✅ Phase 3 (49개 음식 페이지)
+│   ├── 3d-printing-cost-calculator/        ✅ Phase 3
+│   │   ├── page.tsx
+│   │   ├── printing-calculator.tsx
+│   │   └── cost-pie-chart.tsx
+│   └── unit-converter/
+│       ├── page.tsx                        ✅ Phase 3
+│       └── [slug]/page.tsx                 ✅ Phase 3 (59개 변환 페이지)
 ├── data/
 │   ├── ev-models.json                      ✅ Phase 1 (38대)
 │   ├── electricity-rates.json              ✅ Phase 1 (9개 지역)
-│   └── gas-prices.json                     ✅ Phase 1 (9개 지역)
-├── lib/
-│   ├── utils.ts                            ✅
-│   └── ev/
-│       ├── types.ts                        ✅ Phase 1
-│       └── calculations.ts                 ✅ Phase 1
-├── public/
-│   └── robots.txt                          ✅ Phase 0
-├── .env.example                            ✅ Phase 0
-├── next-sitemap.config.js                  ✅ Phase 0
-├── package.json                            ✅ (recharts, next-themes, shadcn/ui 등)
-└── docs/ (9개 문서)                         ✅
+│   ├── gas-prices.json                     ✅ Phase 1 (9개 지역)
+│   ├── food-presets.json                   ✅ Phase 3 (49개 음식)
+│   ├── filaments.json                      ✅ Phase 3 (12종)
+│   └── unit-conversions.json               ✅ Phase 3 (59개 변환)
+└── ...
 ```
 
 ### 상태
 - ✅ Phase 0 완료
-- 🔧 Phase 1 Week 3 완료 (계산기 UI + 데이터 + 차트)
-- ⏳ Phase 1 Week 4 대기 (충전소 맵 + 배포 최적화)
+- ✅ Phase 1 완료 (EV Charging Calculator + 충전소 맵)
+- ✅ Phase 2 완료 (Air Fryer Calculator)
+- ✅ Phase 3 완료 (3D Printing Calculator + 프로그래매틱 확장 120개 정적 페이지)
+- ✅ Phase 5 완료 (EV vs Gas Calculator — TCO 비교, breakeven, CO₂ 절감)
+- ⏳ Phase 6 대기 (성과 측정 + 피벗/가속)
 
 ---
 
@@ -166,7 +168,7 @@ utilverse-cal/
 
 ## Phase 3: 3D Printing Cost Calculator + 프로그래매틱 확장
 
-> 상태: 🔄 진행 중 — 3D Printing Calculator 완료, 프로그래매틱 확장 대기
+> 상태: ✅ 완료
 
 ### 완료 항목
 - [x] lib/printing/types.ts — FilamentType, PrintCostInput, PrintCostResult 타입
@@ -175,7 +177,12 @@ utilverse-cal/
 - [x] app/3d-printing-cost-calculator/page.tsx — SSG 페이지, JSON-LD, 가이드 텍스트 800자+, FAQ 5개
 - [x] app/3d-printing-cost-calculator/printing-calculator.tsx — 필라멘트 선택, 무게/시간/프린터가격/전기요금/와트/실패율 입력, 결과 카드, 판매가 제안
 - [x] app/3d-printing-cost-calculator/cost-pie-chart.tsx — Recharts PieChart 비용 분석
-- [x] 빌드 성공 확인
+- [x] data/food-presets.json — 49개 음식 프리셋 (20개 → +29개 추가: Vegetables, Meat, Poultry, Seafood, Sides, Frozen 전 카테고리 확장)
+- [x] app/air-fryer-calculator/[slug]/page.tsx — 49개 음식별 개별 페이지 (SSG, FAQPage JSON-LD)
+- [x] data/unit-conversions.json — 59개 단위 변환 (30개 → +29개 추가: Length/Weight/Temperature/Volume/Speed/Area)
+- [x] app/unit-converter/[slug]/page.tsx — 59개 변환 개별 페이지 (SSG, 공식 + 참조 테이블)
+- [x] app/page.tsx — Unit Converter 툴 카드 추가 (4개 툴 그리드)
+- [x] 빌드 성공 확인 (120개 정적 페이지)
 
 ---
 
@@ -187,7 +194,16 @@ utilverse-cal/
 
 ## Phase 5: EV vs Gas Calculator + 백링크
 
-> 상태: 대기
+> 상태: ✅ 완료
+
+### 완료 항목
+- [x] lib/ev/tco-calculations.ts — TCO 계산 로직 (EV vs Gas, 5/10년, breakeven, CO₂)
+- [x] app/ev-vs-gas-calculator/page.tsx — SSG 페이지, JSON-LD (WebApplication + FAQPage), 가이드 텍스트 800자+, FAQ 5개
+- [x] app/ev-vs-gas-calculator/tco-calculator.tsx — 9개 지역, 38대 EV + 10대 Gas 차종, 구매가/세금크레딧/유지비/보험 입력, 결과 카드, 연간 비용 비교
+- [x] app/ev-vs-gas-calculator/tco-chart.tsx — Recharts LineChart 누적 비용 비교 + breakeven 라인
+- [x] app/page.tsx — EV vs Gas Calculator 카드 추가 (5개 툴 그리드)
+- [x] components/layout/header.tsx — EV vs Gas Calculator 네비 링크 추가
+- [x] 빌드 성공 확인 (121개 정적 페이지)
 
 ---
 

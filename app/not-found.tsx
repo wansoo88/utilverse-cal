@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Zap, ChefHat, Printer } from 'lucide-react'
+import { Zap, ChefHat, Printer, Car, Ruler } from 'lucide-react'
 
 export default function NotFound() {
   return (
@@ -13,8 +13,10 @@ export default function NotFound() {
       <div className="mt-10 grid gap-4 sm:grid-cols-3">
         {[
           { href: '/ev-charging-cost-calculator', icon: Zap, label: 'EV Charging' },
+          { href: '/ev-vs-gas-calculator', icon: Car, label: 'EV vs Gas' },
           { href: '/air-fryer-calculator', icon: ChefHat, label: 'Air Fryer' },
           { href: '/3d-printing-cost-calculator', icon: Printer, label: '3D Printing' },
+          { href: '/unit-converter', icon: Ruler, label: 'Unit Converter' },
         ].map((tool) => (
           <Link
             key={tool.href}

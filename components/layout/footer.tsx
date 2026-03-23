@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 const toolLinks = [
   { href: '/ev-charging-cost-calculator', label: 'EV Charging Calculator' },
+  { href: '/ev-vs-gas-calculator', label: 'EV vs Gas Calculator' },
   { href: '/air-fryer-calculator', label: 'Air Fryer Calculator' },
   { href: '/3d-printing-cost-calculator', label: '3D Printing Calculator' },
   { href: '/unit-converter', label: 'Unit Converter' },

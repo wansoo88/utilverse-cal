@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Zap, ChefHat, Printer, ArrowRight } from 'lucide-react'
+import { Zap, ChefHat, Printer, Ruler, Car, ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -19,6 +19,15 @@ const tools = [
     bg: 'bg-blue-500/10',
   },
   {
+    href: '/ev-vs-gas-calculator',
+    icon: Car,
+    label: 'EV vs Gas Cost Calculator',
+    desc: 'Compare the true 5 or 10-year total cost of owning an EV vs a gas car. Includes purchase price, fuel, maintenance, insurance, and tax credits.',
+    badge: 'New',
+    color: 'text-sky-500',
+    bg: 'bg-sky-500/10',
+  },
+  {
     href: '/air-fryer-calculator',
     icon: ChefHat,
     label: 'Air Fryer Conversion Calculator',
@@ -35,6 +44,15 @@ const tools = [
     badge: null,
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
+  },
+  {
+    href: '/unit-converter',
+    icon: Ruler,
+    label: 'Unit Converter',
+    desc: 'Convert weight, length, temperature, volume, speed, and area units instantly. 60+ conversions with formulas and reference tables.',
+    badge: null,
+    color: 'text-emerald-500',
+    bg: 'bg-emerald-500/10',
   },
 ]
 

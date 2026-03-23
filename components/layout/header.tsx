@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Zap, ChefHat, Printer, Calculator } from 'lucide-react'
+import { Menu, X, Zap, ChefHat, Printer, Calculator, Ruler, Car } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 
 const tools = [
@@ -11,6 +11,12 @@ const tools = [
     icon: Zap,
     label: 'EV Charging Calculator',
     desc: 'Calculate your monthly EV charging cost',
+  },
+  {
+    href: '/ev-vs-gas-calculator',
+    icon: Car,
+    label: 'EV vs Gas Calculator',
+    desc: 'Compare 5–10 year total cost of ownership',
   },
   {
     href: '/air-fryer-calculator',
@@ -23,6 +29,12 @@ const tools = [
     icon: Printer,
     label: '3D Printing Calculator',
     desc: 'Estimate your 3D print costs',
+  },
+  {
+    href: '/unit-converter',
+    icon: Ruler,
+    label: 'Unit Converter',
+    desc: 'Convert weight, length, temperature & more',
   },
 ]
 
@@ -44,7 +56,6 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 md:flex">
-          {/* Tools dropdown */}
           <div className="relative">
             <button
               onMouseEnter={() => setToolsOpen(true)}
@@ -101,7 +112,6 @@ export function Header() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          {/* Mobile menu button */}
           <button
             className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}

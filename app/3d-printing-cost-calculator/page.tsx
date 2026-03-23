@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { PrintingCalculator } from './printing-calculator'
+import { AffiliateSection, FILAMENT_PRODUCTS } from '@/components/affiliate/affiliate-links'
 
 export const metadata: Metadata = {
   title: '3D Printing Cost Calculator — Estimate the Real Cost of Any Print',
@@ -168,6 +170,20 @@ export default function PrintingCalculatorPage() {
             ))}
           </div>
         </section>
+
+        <section className="mt-12 border-t border-border pt-8">
+          <h2 className="text-lg font-semibold text-foreground mb-4">Related tools</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/ev-charging-cost-calculator" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">⚡ EV Charging Calculator</Link>
+            <Link href="/air-fryer-calculator" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">🍳 Air Fryer Calculator</Link>
+            <Link href="/unit-converter" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">📏 Unit Converter</Link>
+          </div>
+        </section>
+
+        <AffiliateSection
+          heading="Popular Filaments on Amazon"
+          products={FILAMENT_PRODUCTS}
+        />
       </div>
     </>
   )

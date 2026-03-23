@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { EVCalculator } from './ev-calculator'
 import { ChargerFinderMap } from './charger-map'
+import { AffiliateSection, EV_CHARGER_PRODUCTS } from '@/components/affiliate/affiliate-links'
 
 export const metadata: Metadata = {
   title: 'EV Charging Cost Calculator — How Much Does It Cost to Charge Your Electric Car?',
@@ -177,6 +179,21 @@ export default function EVCalculatorPage() {
             ))}
           </div>
         </section>
+
+        <section className="mt-12 border-t border-border pt-8">
+          <h2 className="text-lg font-semibold text-foreground mb-4">Related tools</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/ev-vs-gas-calculator" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">🚗 EV vs Gas Calculator</Link>
+            <Link href="/air-fryer-calculator" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">🍳 Air Fryer Calculator</Link>
+            <Link href="/3d-printing-cost-calculator" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">🖨️ 3D Printing Calculator</Link>
+            <Link href="/unit-converter" className="rounded-lg border border-border bg-card px-4 py-2 text-sm transition-colors hover:bg-muted">📏 Unit Converter</Link>
+          </div>
+        </section>
+
+        <AffiliateSection
+          heading="Recommended Home EV Chargers"
+          products={EV_CHARGER_PRODUCTS}
+        />
       </div>
     </>
   )
