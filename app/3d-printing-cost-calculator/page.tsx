@@ -2,16 +2,27 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PrintingCalculator } from './printing-calculator'
 import { AffiliateSection, FILAMENT_PRODUCTS } from '@/components/affiliate/affiliate-links'
+import { AdSlot } from '@/components/analytics/adsense'
 
 export const metadata: Metadata = {
   title: '3D Printing Cost Calculator — Estimate the Real Cost of Any Print',
   description:
     'Calculate the true cost of any 3D print including filament, electricity, printer depreciation, and failure margin. Get a suggested selling price with profit margins.',
+  alternates: { canonical: '/3d-printing-cost-calculator' },
   openGraph: {
     title: '3D Printing Cost Calculator',
     description:
       'Free 3D printing cost calculator with filament, electricity, depreciation, and failure margin.',
   },
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+    { '@type': 'ListItem', position: 2, name: '3D Printing Cost Calculator', item: 'https://cal.utilverse.info/3d-printing-cost-calculator' },
+  ],
 }
 
 const jsonLd = {
@@ -75,6 +86,7 @@ const faqJsonLd = {
 export default function PrintingCalculatorPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -85,6 +97,12 @@ export default function PrintingCalculatorPage() {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <nav className="mb-6 text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-foreground">Home</Link>
+          <span className="mx-2">/</span>
+          <span className="text-foreground">3D Printing Cost Calculator</span>
+        </nav>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
             3D Printing Cost Calculator
@@ -145,6 +163,8 @@ export default function PrintingCalculatorPage() {
             </p>
           </div>
         </section>
+
+        <AdSlot slot="4567890123" format="horizontal" className="my-8" />
 
         {/* FAQ */}
         <section className="mt-12">

@@ -25,6 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${safeConv.from} to ${safeConv.to} Converter — ${safeConv.fromUnit} to ${safeConv.toUnit}`,
     description: `Convert ${safeConv.from} to ${safeConv.to} instantly. Free ${safeConv.fromUnit} to ${safeConv.toUnit} calculator with conversion formula and reference table.`,
+    alternates: { canonical: `/unit-converter/${slug}` },
+    openGraph: {
+      title: `${safeConv.from} to ${safeConv.to} Converter`,
+      description: `Free ${safeConv.fromUnit} to ${safeConv.toUnit} converter with formula and reference table.`,
+    },
   }
 }
 
@@ -50,10 +55,37 @@ export default async function UnitConverterPage({ params }: Props) {
     return val * safeConv.factor
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: `${safeConv.from} to ${safeConv.to} Converter`,
+    url: `${siteUrl}/unit-converter/${slug}`,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web Browser',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    description: `Convert ${safeConv.fromUnit} to ${safeConv.toUnit} with formula and reference table.`,
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Unit Converter', item: `${siteUrl}/unit-converter` },
+      { '@type': 'ListItem', position: 3, name: `${safeConv.from} to ${safeConv.to}`, item: `${siteUrl}/unit-converter/${slug}` },
+    ],
+  }
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
       <nav className="mb-6 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-foreground">Home</Link>
+        <span className="mx-2">/</span>
+        <Link href="/unit-converter" className="hover:text-foreground">Unit Converter</Link>
         <span className="mx-2">/</span>
         <span className="text-foreground">{safeConv.from} to {safeConv.to}</span>
       </nav>
@@ -162,5 +194,6 @@ export default async function UnitConverterPage({ params }: Props) {
         ))}
       </section>
     </div>
+    </>
   )
 }

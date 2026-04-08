@@ -22,6 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Air Fryer ${preset.name} — Time and Temperature`,
     description: `How to cook ${preset.name} in an air fryer: ${preset.airFryer?.tempF ?? 375}°F for ${formatTime(preset.airFryer?.timeMin ?? 15)}. Plus oven, convection, Instant Pot, and slow cooker settings.`,
+    alternates: { canonical: `/air-fryer-calculator/${slug}` },
+    openGraph: {
+      title: `Air Fryer ${preset.name} — Time and Temperature`,
+      description: `Cook ${preset.name} at ${preset.airFryer?.tempF ?? 375}°F for ${formatTime(preset.airFryer?.timeMin ?? 15)} in your air fryer.`,
+    },
   }
 }
 

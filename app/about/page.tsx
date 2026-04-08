@@ -4,10 +4,26 @@ export const metadata: Metadata = {
   title: 'About utilverse',
   description:
     'Free, accurate online calculators built with real public data from EIA.gov, EPA, and fueleconomy.gov.',
+  alternates: { canonical: '/about' },
+}
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'utilverse',
+  url: 'https://cal.utilverse.info',
+  description: 'Free, accurate online calculators built with real public data from EIA.gov, EPA, and fueleconomy.gov.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    url: 'https://cal.utilverse.info/contact',
+  },
 }
 
 export default function AboutPage() {
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight">About utilverse</h1>
       <div className="mt-8 space-y-6 text-base text-muted-foreground leading-relaxed">
@@ -85,5 +101,6 @@ export default function AboutPage() {
         </p>
       </div>
     </div>
+    </>
   )
 }

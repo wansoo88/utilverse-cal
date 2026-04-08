@@ -3,15 +3,26 @@ import Link from 'next/link'
 import { EVCalculator } from './ev-calculator'
 import { ChargerFinderMap } from './charger-map'
 import { AffiliateSection, EV_CHARGER_PRODUCTS } from '@/components/affiliate/affiliate-links'
+import { AdSlot } from '@/components/analytics/adsense'
 
 export const metadata: Metadata = {
   title: 'EV Charging Cost Calculator — How Much Does It Cost to Charge Your Electric Car?',
   description:
     'Calculate exactly how much it costs to charge your electric car at home, at public stations, or DC fast chargers. Covers US, UK, Germany, Norway, France, Australia, Canada, and China.',
+  alternates: { canonical: '/ev-charging-cost-calculator' },
   openGraph: {
     title: 'EV Charging Cost Calculator',
     description: 'Free, accurate EV charging cost calculator with real electricity rate data.',
   },
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+    { '@type': 'ListItem', position: 2, name: 'EV Charging Cost Calculator', item: 'https://cal.utilverse.info/ev-charging-cost-calculator' },
+  ],
 }
 
 const jsonLd = {
@@ -91,6 +102,7 @@ const faqJsonLd = {
 export default function EVCalculatorPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -101,6 +113,12 @@ export default function EVCalculatorPage() {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <nav className="mb-6 text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-foreground">Home</Link>
+          <span className="mx-2">/</span>
+          <span className="text-foreground">EV Charging Cost Calculator</span>
+        </nav>
+
         {/* Page header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
@@ -154,6 +172,8 @@ export default function EVCalculatorPage() {
             </p>
           </div>
         </section>
+
+        <AdSlot slot="1234567890" format="horizontal" className="my-8" />
 
         {/* FAQ */}
         <section className="mt-12">
