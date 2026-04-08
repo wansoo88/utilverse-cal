@@ -176,7 +176,7 @@ export function EVCalculator() {
                   <button
                     key={r.code}
                     onClick={() => handleRegionChange(r.code)}
-                    className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+                    className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 sm:py-1.5 text-sm transition-colors ${
                       regionCode === r.code
                         ? 'border-primary bg-primary/10 text-primary font-medium'
                         : 'border-border bg-background text-muted-foreground hover:border-primary/50 hover:text-foreground'
@@ -250,7 +250,7 @@ export function EVCalculator() {
                     type="number"
                     value={monthlyDistance}
                     onChange={(e) => setMonthlyDistance(Math.min(maxDistance, Math.max(minDistance, Number(e.target.value))))}
-                    className="w-20 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-24 sm:w-20 rounded-lg border border-input bg-background px-2.5 sm:px-2 py-2 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">{distanceUnit}</span>
                 </div>

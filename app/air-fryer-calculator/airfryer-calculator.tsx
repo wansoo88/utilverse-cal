@@ -70,12 +70,12 @@ export function AirFryerCalculator() {
         <p className="text-sm font-medium text-foreground mb-3">
           Quick presets
         </p>
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        <div className="flex flex-wrap gap-1.5 mb-3 overflow-x-auto pb-0.5">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setCategoryFilter(cat)}
-              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
+              className={`shrink-0 rounded-md border px-2.5 py-1.5 text-xs transition-colors ${
                 categoryFilter === cat
                   ? 'border-primary bg-primary/10 text-primary font-medium'
                   : 'border-border text-muted-foreground hover:border-primary/50'
@@ -109,12 +109,12 @@ export function AirFryerCalculator() {
           {/* From */}
           <div className="space-y-4">
             <p className="text-sm font-medium text-foreground">Convert from</p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap">
               {METHODS.map((m) => (
                 <button
                   key={m.code}
                   onClick={() => setFromMethod(m.code)}
-                  className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+                  className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 sm:py-1.5 text-sm transition-colors ${
                     fromMethod === m.code
                       ? 'border-primary bg-primary/10 text-primary font-medium'
                       : 'border-border text-muted-foreground hover:border-primary/50'
@@ -220,12 +220,12 @@ export function AirFryerCalculator() {
           {/* To */}
           <div className="space-y-4">
             <p className="text-sm font-medium text-foreground">Convert to</p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap">
               {METHODS.map((m) => (
                 <button
                   key={m.code}
                   onClick={() => setToMethod(m.code)}
-                  className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+                  className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 sm:py-1.5 text-sm transition-colors ${
                     toMethod === m.code
                       ? 'border-secondary bg-secondary/10 text-secondary font-medium'
                       : 'border-border text-muted-foreground hover:border-secondary/50'
@@ -289,7 +289,7 @@ export function AirFryerCalculator() {
               {preset.icon} {preset.name} — All cooking methods
             </p>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="py-2 pr-4 text-left text-xs font-medium text-muted-foreground">

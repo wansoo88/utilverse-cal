@@ -31,14 +31,14 @@ export function CostPieChart({ result }: Props) {
       <p className="text-xs text-muted-foreground mb-5">
         Where your money goes on each print
       </p>
-      <ResponsiveContainer width="100%" height={260}>
+      <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={100}
+            innerRadius={50}
+            outerRadius={85}
             paddingAngle={3}
             dataKey="value"
             stroke="none"

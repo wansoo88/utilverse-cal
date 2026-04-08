@@ -133,7 +133,7 @@ export function Header() {
               <Link
                 key={tool.href}
                 href={tool.href}
-                className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-muted"
+                className="flex items-center gap-3 rounded-lg px-3 py-3.5 transition-colors hover:bg-muted"
                 onClick={() => setMobileOpen(false)}
               >
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -145,14 +145,14 @@ export function Header() {
             <div className="mt-3 border-t border-border pt-3">
               <Link
                 href="/about"
-                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="block rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="block rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 Contact

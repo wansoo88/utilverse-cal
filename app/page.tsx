@@ -123,7 +123,7 @@ export default function HomePage() {
               actually search for.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-4 md:gap-8 md:grid-cols-3">
             <div className="text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary text-xl font-bold">
                 1
@@ -161,7 +161,7 @@ export default function HomePage() {
       {/* Why utilverse */}
       <section className="border-t border-border bg-muted/30 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               { label: 'No sign-up required', desc: 'Open a page, get an answer. No account, no email, no friction.' },
               { label: 'Real data sources', desc: 'Built on EIA.gov, EPA, fueleconomy.gov, and other government datasets.' },
