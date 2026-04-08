@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://utilverse.info',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info',
   generateRobotsTxt: false,
   sitemapSize: 5000,
 

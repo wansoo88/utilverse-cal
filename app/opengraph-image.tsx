@@ -69,7 +69,7 @@ export default function OGImage() {
 
         {/* URL */}
         <p style={{ position: 'absolute', bottom: '40px', fontSize: '18px', color: '#475569' }}>
-          utilverse.info
+          cal.utilverse.info
         </p>
       </div>
     ),

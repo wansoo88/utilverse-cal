@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy for utilverse.info — how we collect and use data.',
+  description: 'Privacy policy for cal.utilverse.info — how we collect and use data.',
 }
 
 export default function PrivacyPolicyPage() {
@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="mt-8 space-y-6 text-base text-muted-foreground leading-relaxed">
         <p>
-          This privacy policy explains how utilverse.info collects, uses, and protects information
+          This privacy policy explains how cal.utilverse.info collects, uses, and protects information
           when you use our website. We keep it simple because we don&apos;t collect much.
         </p>
 

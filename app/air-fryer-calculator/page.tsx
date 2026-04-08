@@ -18,7 +18,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'Air Fryer Conversion Calculator',
-  url: 'https://utilverse.info/air-fryer-calculator',
+  url: 'https://cal.utilverse.info/air-fryer-calculator',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web Browser',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
