@@ -18,7 +18,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'EV Charging Cost Calculator',
-  url: 'https://utilverse.info/ev-charging-cost-calculator',
+  url: 'https://cal.utilverse.info/ev-charging-cost-calculator',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web Browser',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

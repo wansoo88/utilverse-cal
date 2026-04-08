@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   description:
     'Free, accurate online calculators for EV charging costs, air fryer conversions, 3D printing costs, and more. Built with real data.',
-  metadataBase: new URL('https://utilverse.info'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info'),
   openGraph: {
     type: 'website',
     siteName: 'utilverse',

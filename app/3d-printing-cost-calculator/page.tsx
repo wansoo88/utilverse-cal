@@ -18,7 +18,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: '3D Printing Cost Calculator',
-  url: 'https://utilverse.info/3d-printing-cost-calculator',
+  url: 'https://cal.utilverse.info/3d-printing-cost-calculator',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web Browser',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

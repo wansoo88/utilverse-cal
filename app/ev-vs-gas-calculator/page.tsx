@@ -16,7 +16,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'EV vs Gas Cost Calculator',
-  url: 'https://utilverse.info/ev-vs-gas-calculator',
+  url: 'https://cal.utilverse.info/ev-vs-gas-calculator',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web Browser',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

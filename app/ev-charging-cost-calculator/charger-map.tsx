@@ -77,7 +77,7 @@ export function ChargerFinderMap() {
     try {
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(zipInput.trim())}&limit=1`,
-        { headers: { 'User-Agent': 'utilverse.info' } }
+        { headers: { 'User-Agent': 'cal.utilverse.info' } }
       )
       const data = await res.json()
       if (data.length === 0) { setError('Location not found. Try a different search.'); setLoading(false); return }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of service for utilverse.info.',
+  description: 'Terms of service for cal.utilverse.info.',
 }
 
 export default function TermsPage() {
@@ -13,13 +13,13 @@ export default function TermsPage() {
 
       <div className="mt-8 space-y-6 text-base text-muted-foreground leading-relaxed">
         <p>
-          By using utilverse.info, you agree to these terms. If you don&apos;t agree, please don&apos;t
+          By using cal.utilverse.info, you agree to these terms. If you don&apos;t agree, please don&apos;t
           use the site.
         </p>
 
         <h2 className="text-xl font-semibold text-foreground pt-2">Accuracy disclaimer</h2>
         <p>
-          All calculators on utilverse.info provide estimates based on publicly available data.
+          All calculators on cal.utilverse.info provide estimates based on publicly available data.
           Results are for informational purposes only and should not be used as the sole basis
           for financial, purchasing, or engineering decisions. Actual costs may vary based on
           your specific vehicle, local utility rates, driving habits, and other factors.
@@ -32,7 +32,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold text-foreground pt-2">Permitted use</h2>
         <p>
-          You may use utilverse.info for personal, non-commercial purposes. You may share
+          You may use cal.utilverse.info for personal, non-commercial purposes. You may share
           links to our tools freely. You may not:
         </p>
         <ul className="list-disc pl-6 space-y-2">
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold text-foreground pt-2">Intellectual property</h2>
         <p>
-          The content, design, and code of utilverse.info are owned by utilverse. Data sourced
+          The content, design, and code of cal.utilverse.info are owned by utilverse. Data sourced
           from government agencies (EIA.gov, EPA, fueleconomy.gov) is in the public domain.
           Third-party data (Open Charge Map, OpenStreetMap) is used under their respective
           open licenses.
@@ -52,7 +52,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold text-foreground pt-2">Limitation of liability</h2>
         <p>
-          utilverse.info is provided &quot;as is&quot; without warranties of any kind. We are not liable
+          cal.utilverse.info is provided &quot;as is&quot; without warranties of any kind. We are not liable
           for any damages arising from your use of the site or reliance on its calculations.
           This includes but is not limited to financial losses, vehicle purchase decisions,
           or energy contract decisions.
