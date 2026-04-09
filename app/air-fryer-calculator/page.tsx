@@ -1,17 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AirFryerCalculator } from './airfryer-calculator'
+import { AdSlot } from '@/components/analytics/adsense'
 
 export const metadata: Metadata = {
   title:
     'Air Fryer Conversion Calculator — Oven to Air Fryer Time & Temperature',
   description:
     'Convert any oven recipe for your air fryer in seconds. Supports 5-way conversion between oven, air fryer, convection oven, Instant Pot, and slow cooker. 20 popular food presets included.',
+  alternates: { canonical: '/air-fryer-calculator' },
   openGraph: {
     title: 'Air Fryer Conversion Calculator',
     description:
       'Free air fryer conversion calculator with 20 food presets and 5-way cooking method conversion.',
   },
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+    { '@type': 'ListItem', position: 2, name: 'Air Fryer Calculator', item: 'https://cal.utilverse.info/air-fryer-calculator' },
+  ],
 }
 
 const jsonLd = {
@@ -76,6 +87,7 @@ const faqJsonLd = {
 export default function AirFryerCalculatorPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -86,6 +98,12 @@ export default function AirFryerCalculatorPage() {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <nav className="mb-6 text-sm text-muted-foreground">
+          <Link href="/" className="hover:text-foreground">Home</Link>
+          <span className="mx-2">/</span>
+          <span className="text-foreground">Air Fryer Calculator</span>
+        </nav>
+
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
             Air Fryer Conversion Calculator
@@ -145,6 +163,8 @@ export default function AirFryerCalculatorPage() {
             </p>
           </div>
         </section>
+
+        <AdSlot slot="3456789012" format="horizontal" className="my-8" />
 
         {/* FAQ */}
         <section className="mt-12">

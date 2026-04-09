@@ -35,7 +35,7 @@ export function TCOChart({ data, currencySymbol, breakevenYear }: TCOChartProps)
         <YAxis
           tickFormatter={formatY}
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
-          width={55}
+          width={45}
         />
         <Tooltip
           formatter={(value) =>

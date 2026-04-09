@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'utilverse — Free Online Calculators & Tools',
   description:
     'Free, accurate online calculators for EV charging costs, air fryer conversions, 3D printing costs, and more. Built with real data from EIA.gov, EPA, and fueleconomy.gov.',
+  alternates: { canonical: '/' },
 }
 
 const tools = [
@@ -112,8 +113,72 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section className="border-t border-border py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-12">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">How it works</h2>
+            <p className="mt-3 text-base text-muted-foreground">
+              Every calculator on utilverse is built around real data and a specific question people
+              actually search for.
+            </p>
+          </div>
+          <div className="grid gap-4 md:gap-8 md:grid-cols-3">
+            <div className="text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary text-xl font-bold">
+                1
+              </div>
+              <h3 className="font-semibold text-foreground">Pick your tool</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                Choose the calculator that matches your question. Each one is purpose-built for a
+                specific use case, not a generic formula.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary text-xl font-bold">
+                2
+              </div>
+              <h3 className="font-semibold text-foreground">Enter your numbers</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                Input your vehicle, location, or settings. Defaults are pre-filled with real
+                averages so you get a useful result immediately.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10 text-secondary text-xl font-bold">
+                3
+              </div>
+              <h3 className="font-semibold text-foreground">Get a real answer</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                See your result instantly — with charts, breakdowns, and comparisons that make the
+                numbers actually mean something.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why utilverse */}
+      <section className="border-t border-border bg-muted/30 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'No sign-up required', desc: 'Open a page, get an answer. No account, no email, no friction.' },
+              { label: 'Real data sources', desc: 'Built on EIA.gov, EPA, fueleconomy.gov, and other government datasets.' },
+              { label: 'Always free', desc: 'Every calculator is free to use. No paywalls, no "premium" features.' },
+              { label: 'Works everywhere', desc: 'Mobile, tablet, desktop — the calculators work on any screen size.' },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border border-border bg-card p-5">
+                <p className="font-semibold text-foreground text-sm">{item.label}</p>
+                <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Trust section */}
-      <section className="border-t border-border bg-muted/30 py-12">
+      <section className="border-t border-border bg-background py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-muted-foreground">
             Data sourced from{' '}

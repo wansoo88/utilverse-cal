@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'utilverse',
-    images: ['/og-default.png'],
   },
   twitter: {
     card: 'summary_large_image',

@@ -64,7 +64,7 @@ export default function LeafletMap({ center, stations }: Props) {
     : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
   return (
-    <div className="h-[400px] w-full rounded-xl overflow-hidden border border-border">
+    <div className="h-[300px] sm:h-[400px] w-full rounded-xl overflow-hidden border border-border">
       <MapContainer
         center={[center.lat, center.lng]}
         zoom={11}

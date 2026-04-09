@@ -1,15 +1,26 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TCOCalculator } from './tco-calculator'
+import { AdSlot } from '@/components/analytics/adsense'
 
 export const metadata: Metadata = {
   title: 'EV vs Gas Cost Calculator — Total Cost of Ownership Comparison',
   description:
     'Compare the true 5-year and 10-year cost of owning an electric vehicle vs a gas car. Includes purchase price, fuel, maintenance, insurance, and tax credits. Find your breakeven point.',
+  alternates: { canonical: '/ev-vs-gas-calculator' },
   openGraph: {
     title: 'EV vs Gas Cost Calculator',
     description: 'See exactly when an EV pays off vs a gas car with our TCO calculator.',
   },
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+    { '@type': 'ListItem', position: 2, name: 'EV vs Gas Cost Calculator', item: 'https://cal.utilverse.info/ev-vs-gas-calculator' },
+  ],
 }
 
 const jsonLd = {
@@ -73,6 +84,7 @@ const faqJsonLd = {
 export default function EVvsGasPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
@@ -131,6 +143,8 @@ export default function EVvsGasPage() {
             </p>
           </div>
         </section>
+
+        <AdSlot slot="2345678901" format="horizontal" className="my-8" />
 
         {/* FAQ */}
         <section className="mt-12">

@@ -5,6 +5,7 @@ import conversions from '@/data/unit-conversions.json'
 export const metadata: Metadata = {
   title: 'Unit Converter — Free Online Conversion Calculator',
   description: 'Convert between 30+ units of measurement including weight, length, temperature, volume, speed, and area. Fast, free, and accurate.',
+  alternates: { canonical: '/unit-converter' },
 }
 
 interface UnitConversion {

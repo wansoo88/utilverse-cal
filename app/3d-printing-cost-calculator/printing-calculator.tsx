@@ -73,7 +73,7 @@ export function PrintingCalculator() {
                     type="number"
                     value={filamentPrice}
                     onChange={(e) => setFilamentPrice(Math.max(1, Number(e.target.value)))}
-                    className="w-16 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-20 sm:w-16 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">/kg</span>
                 </div>
@@ -90,7 +90,7 @@ export function PrintingCalculator() {
                     type="number"
                     value={modelWeight}
                     onChange={(e) => setModelWeight(Math.max(1, Number(e.target.value)))}
-                    className="w-20 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-24 sm:w-20 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">g</span>
                 </div>
@@ -114,7 +114,7 @@ export function PrintingCalculator() {
                   <input
                     type="number" step={0.5} value={printTime}
                     onChange={(e) => setPrintTime(Math.max(0.1, Number(e.target.value)))}
-                    className="w-16 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-20 sm:w-16 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">hours</span>
                 </div>
@@ -139,7 +139,7 @@ export function PrintingCalculator() {
                   <input
                     type="number" value={printerPrice}
                     onChange={(e) => setPrinterPrice(Math.max(0, Number(e.target.value)))}
-                    className="w-20 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-24 sm:w-20 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
               </div>
@@ -162,7 +162,7 @@ export function PrintingCalculator() {
                   <input
                     type="number" value={printerWattage}
                     onChange={(e) => setPrinterWattage(Math.max(10, Number(e.target.value)))}
-                    className="w-16 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-20 sm:w-16 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">W</span>
                 </div>
@@ -184,7 +184,7 @@ export function PrintingCalculator() {
                   <input
                     type="number" step={0.01} value={electricityRate}
                     onChange={(e) => setElectricityRate(Math.max(0.01, Number(e.target.value)))}
-                    className="w-16 rounded-lg border border-input bg-background px-2 py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-20 sm:w-16 rounded-lg border border-input bg-background px-2 py-1.5 sm:py-1 text-sm text-right text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                   <span className="text-sm text-muted-foreground">/kWh</span>
                 </div>
