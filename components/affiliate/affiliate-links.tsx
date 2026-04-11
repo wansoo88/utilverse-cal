@@ -26,9 +26,9 @@ export function AffiliateSection({ heading, products }: AffiliateSectionProps) {
         We may earn a small commission if you buy through these links — at no extra cost to you.
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
+        {products.map((p, i) => (
           <Link
-            key={p.url}
+            key={`${p.url}-${i}`}
             href={p.url}
             target="_blank"
             rel="noopener noreferrer nofollow"
@@ -73,7 +73,7 @@ export const EV_CHARGER_PRODUCTS: AffiliateProduct[] = [
     title: 'Wallbox Pulsar Plus (Level 2, 48A)',
     description: 'Smart home charger with app control, scheduling, and energy monitoring.',
     price: 'From $649',
-    url: 'https://www.amazon.com/dp/B08CXNLB5G?tag=utilverse-20',
+    url: 'https://www.amazon.com/dp/B086CXDB8W?tag=utilverse-20',
     badge: 'Smart Charging',
   },
 ]
@@ -96,6 +96,6 @@ export const FILAMENT_PRODUCTS: AffiliateProduct[] = [
     title: 'Polymaker PolyLite ABS (1kg)',
     description: 'Low-warp ABS with excellent layer adhesion. Good for heat-resistant parts.',
     price: 'From $26',
-    url: 'https://www.amazon.com/dp/B07PGYHYV8?tag=utilverse-20',
+    url: 'https://www.amazon.com/dp/B07H7QC6PY?tag=utilverse-20',
   },
 ]

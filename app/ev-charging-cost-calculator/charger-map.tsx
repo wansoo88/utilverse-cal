@@ -59,6 +59,10 @@ export function ChargerFinderMap() {
   }, [radius, filters]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleUseMyLocation() {
+    if (!OCM_API_KEY) {
+      setError('OCM API key is not configured. Please add NEXT_PUBLIC_OCM_API_KEY to your .env.local file.')
+      return
+    }
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by your browser.')
       return
@@ -72,6 +76,10 @@ export function ChargerFinderMap() {
 
   async function handleZipSearch() {
     if (!zipInput.trim()) return
+    if (!OCM_API_KEY) {
+      setError('OCM API key is not configured. Please add NEXT_PUBLIC_OCM_API_KEY to your .env.local file.')
+      return
+    }
     setLoading(true)
     setError(null)
     try {
