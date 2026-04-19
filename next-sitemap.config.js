@@ -1,54 +1,18 @@
 /** @type {import('next-sitemap').IConfig} */
+// Google only uses <loc> and (optionally) <lastmod>. priority/changefreq are ignored.
+// We omit lastmod entirely since our build-time timestamp is identical across all pages,
+// which provides no useful signal. See: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info',
   generateRobotsTxt: false,
+  autoLastmod: false,
   sitemapSize: 5000,
 
-  // Split into multiple sitemaps by URL pattern
-  additionalPaths: async () => [],
+  transform: async (_config, path) => ({ loc: path }),
 
-  transform: async (config, path) => {
-    // Core pages — high priority, weekly
-    if (path === '/') {
-      return { loc: path, changefreq: 'weekly', priority: 1.0, lastmod: new Date().toISOString() }
-    }
-
-    // Calculator main pages — high priority
-    const calculatorRoots = [
-      '/ev-charging-cost-calculator',
-      '/ev-vs-gas-calculator',
-      '/air-fryer-calculator',
-      '/3d-printing-cost-calculator',
-      '/unit-converter',
-    ]
-    if (calculatorRoots.includes(path)) {
-      return { loc: path, changefreq: 'weekly', priority: 0.9, lastmod: new Date().toISOString() }
-    }
-
-    // Air fryer food pages
-    if (path.startsWith('/air-fryer-calculator/')) {
-      return { loc: path, changefreq: 'monthly', priority: 0.7, lastmod: new Date().toISOString() }
-    }
-
-    // Unit converter pages
-    if (path.startsWith('/unit-converter/')) {
-      return { loc: path, changefreq: 'monthly', priority: 0.6, lastmod: new Date().toISOString() }
-    }
-
-    // Company/legal pages — low priority
-    const staticPages = ['/about', '/contact', '/privacy-policy', '/terms']
-    if (staticPages.includes(path)) {
-      return { loc: path, changefreq: 'yearly', priority: 0.3, lastmod: new Date().toISOString() }
-    }
-
-    // Default
-    return { loc: path, changefreq: 'monthly', priority: 0.5, lastmod: new Date().toISOString() }
-  },
-
-  // Single sitemap.xml (no index) — URL count is well under sitemapSize limit
   outDir: 'public',
   generateIndexSitemap: false,
 
-  // Exclude internal Next.js paths
-  exclude: ['/_not-found', '/404'],
+  // Exclude internal Next.js paths & OG/twitter image endpoints
+  exclude: ['/_not-found', '/404', '/opengraph-image', '/twitter-image'],
 }

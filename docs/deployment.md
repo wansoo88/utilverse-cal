@@ -103,19 +103,29 @@ TTL:   Auto
 
 ## 6. 배포 후 필수 작업
 
-### 6-1. Google Search Console 등록 및 Sitemap 제출
-1. https://search.google.com/search-console 접속
-2. 속성 추가 → **URL prefix** → `https://cal.utilverse.info` 입력
-3. 소유권 확인: HTML 태그 or DNS TXT 레코드 중 선택
-   - HTML 태그 선택 시 `app/layout.tsx`의 `<head>` 에 `verification` 메타 추가:
-     ```ts
-     export const metadata: Metadata = {
-       // ...
-       verification: { google: 'abc123XXX...' },
-     }
-     ```
-4. 확인 완료 후 **Sitemaps** 메뉴에서 `sitemap.xml` 제출
-5. URL 검사 도구로 주요 페이지 5개 인덱싱 요청:
+### 6-1. Google Search Console 등록
+
+utilverse.info 루트 도메인에 다른 프로젝트가 추가될 예정이므로
+**도메인 속성**과 **URL 접두어 속성 두 개 모두 등록**을 권장합니다.
+
+#### (a) 도메인 속성 — 서브도메인 통합 모니터링 (우선 권장)
+1. https://search.google.com/search-console 접속 → 속성 추가 → **도메인** 선택
+2. `utilverse.info` 입력 (서브도메인·https/http 전부 한 번에 커버)
+3. 표시된 TXT 레코드 복사 (예: `google-site-verification=abc...`)
+4. **카페24 DNS 관리** → 레코드 추가:
+   - 호스트: `@` (또는 비워둠)
+   - 타입: `TXT`
+   - 값: 복사한 전체 문자열
+   - TTL: 3600
+5. 저장 후 5~30분 기다림 → GSC "확인" 버튼 클릭
+
+> 도메인 속성 하나로 현재/미래 모든 서브도메인(`cal.`, `blog.`, `app.` …)을 통합 모니터링할 수 있습니다.
+
+#### (b) URL 접두어 속성 — 서브도메인별 세부 지표
+1. 속성 추가 → **URL 접두어** → `https://cal.utilverse.info` 입력
+2. 소유권 확인: 도메인 속성을 이미 등록했다면 자동 인증
+3. **Sitemaps** 메뉴 → 입력창에 `sitemap.xml`만 입력 후 제출
+4. URL 검사 도구로 주요 페이지 6개 인덱싱 요청:
    - `/`
    - `/ev-charging-cost-calculator`
    - `/ev-vs-gas-calculator`
@@ -154,12 +164,12 @@ TTL:   Auto
 
 ## 9. SEO 전략 요약
 
-- **sitemap 구조**: `/sitemap.xml` (index) → `/sitemap-0.xml` (URL 목록 ~121개)
-- **priority**:
-  - 홈: 1.0
-  - 계산기 메인 5개: 0.9
-  - 프로그래매틱 air-fryer 서브페이지: 0.7
-  - 프로그래매틱 unit-converter 서브페이지: 0.6
-  - 필수 페이지(About/Contact/Privacy/Terms): 0.3
-- **changefreq**: 계산기 weekly / 프로그래매틱 monthly / 필수페이지 yearly
-- **구조화 데이터**: 전 페이지에 Organization + WebSite(루트) + 페이지별 BreadcrumbList/WebApplication/FAQPage (air-fryer slug는 HowTo)
+- **sitemap**: 단일 `/sitemap.xml`, 118개 URL 직접 나열 (index 구조 제거)
+  - `<loc>`만 포함. `priority`/`changefreq`는 Google이 무시, `lastmod`는 빌드시점이 전체 동일해 무의미하므로 생략 (공식 권고)
+- **OG 이미지**: `app/opengraph-image.tsx`가 `/opengraph-image` 엔드포인트에서 1200×630 PNG를 edge runtime으로 동적 생성. `app/twitter-image.tsx`는 동일 이미지 재사용
+- **구조화 데이터**:
+  - 루트: Organization + WebSite
+  - 계산기 페이지: BreadcrumbList + WebApplication + FAQPage
+  - air-fryer 프로그래매틱 slug: BreadcrumbList + HowTo + FAQPage
+  - unit-converter 프로그래매틱 slug: BreadcrumbList + WebApplication + FAQPage
+- **서브도메인 전략**: 루트 `utilverse.info`는 향후 다른 프로젝트용 예약, 계산기는 `cal.` 서브도메인에 격리 (GSC 도메인 속성으로 통합 모니터링)

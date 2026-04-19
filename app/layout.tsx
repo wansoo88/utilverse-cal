@@ -32,19 +32,12 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'utilverse',
     url: SITE_URL,
-    images: [
-      {
-        url: '/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'utilverse — Free Online Calculators & Tools',
-      },
-    ],
     locale: 'en_US',
+    // images: app/opengraph-image.tsx가 자동으로 /opengraph-image 엔드포인트 제공
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/og-default.png'],
+    // images: app/twitter-image.tsx가 자동 제공
   },
   robots: {
     index: true,
@@ -63,7 +56,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'utilverse',
   url: SITE_URL,
-  logo: `${SITE_URL}/og-default.png`,
+  logo: `${SITE_URL}/opengraph-image`,
   description:
     'Free online calculators and conversion tools built with real public data.',
   sameAs: [],
