@@ -29,6 +29,8 @@ const CHARGING_PRESETS: { label: string; ratio: ChargingRatio }[] = [
   { label: 'Apartment', ratio: { home: 0, publicL2: 0.5, dcFast: 0.5 } },
 ]
 
+const KM_PER_MILE = 1.60934
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function getRegionData(code: RegionCode) {
@@ -87,11 +89,11 @@ export function EVCalculator() {
   const [vehicleId, setVehicleId] = useState('tesla-model-3-lr')
   const [vehicleSearch, setVehicleSearch] = useState('')
   const [monthlyDistance, setMonthlyDistance] = useState(1000)
+  const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles')
   const [chargingRatio, setChargingRatio] = useState<ChargingRatio>({ home: 0.8, publicL2: 0.1, dcFast: 0.1 })
 
   const regionData = getRegionData(regionCode)
   const subRegions = getSubRegions(regionCode)
-  const distanceUnit = regionData.distanceUnit
   const currencySymbol = regionData.symbol
 
   const filteredVehicles = useMemo(() => {
@@ -130,12 +132,23 @@ export function EVCalculator() {
   function handleRegionChange(code: RegionCode) {
     setRegionCode(code)
     const d = getRegionData(code)
+    setDistanceUnit(d.distanceUnit)
     setMonthlyDistance(d.defaultMonthlyDistance)
     const subs = getSubRegions(code)
     setSubCode(subs ? subs[0].code : '')
     // Reset vehicle to first available in region
     const first = (evModels as EVModel[]).find((v) => v.regions.includes(code))
     if (first) setVehicleId(first.id)
+  }
+
+  function handleUnitToggle(newUnit: 'miles' | 'km') {
+    if (newUnit === distanceUnit) return
+    setMonthlyDistance((prev) =>
+      newUnit === 'km'
+        ? Math.round(prev * KM_PER_MILE)
+        : Math.round(prev / KM_PER_MILE),
+    )
+    setDistanceUnit(newUnit)
   }
 
   function handlePreset(ratio: ChargingRatio) {
@@ -241,11 +254,29 @@ export function EVCalculator() {
           <div className="space-y-5">
             {/* Monthly distance */}
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
                 <label className="text-sm font-medium text-foreground">
                   Monthly Distance
                 </label>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
+                  <div className="inline-flex rounded-lg border border-border bg-background p-0.5">
+                    {(['miles', 'km'] as const).map((u) => (
+                      <button
+                        key={u}
+                        type="button"
+                        onClick={() => handleUnitToggle(u)}
+                        className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                          distanceUnit === u
+                            ? 'bg-primary text-primary-foreground'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                        aria-pressed={distanceUnit === u}
+                        aria-label={`Switch to ${u}`}
+                      >
+                        {u}
+                      </button>
+                    ))}
+                  </div>
                   <input
                     type="number"
                     value={monthlyDistance}

@@ -6,6 +6,62 @@ export const metadata: Metadata = {
   title: 'Unit Converter — Free Online Conversion Calculator',
   description: 'Convert between units of weight, length, temperature, volume, speed, and area. Free, accurate, and instant — with formulas and reference tables.',
   alternates: { canonical: '/unit-converter' },
+  openGraph: {
+    title: 'Unit Converter — Free Online Conversion Calculator',
+    description: 'Free unit conversion calculators for weight, length, temperature, volume, speed, and area.',
+    url: '/unit-converter',
+  },
+}
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+    { '@type': 'ListItem', position: 2, name: 'Unit Converter', item: 'https://cal.utilverse.info/unit-converter' },
+  ],
+}
+
+const webAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Unit Converter',
+  url: 'https://cal.utilverse.info/unit-converter',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Free unit conversion calculators for weight, length, temperature, volume, speed, and area.',
+}
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Which countries use the metric system?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'All countries except the United States, Liberia, and Myanmar officially use the metric system. The US uses metric in science, medicine, and military contexts, but US customary units dominate everyday life. The UK officially uses metric but retains miles for road signs and pints for draught beer.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How accurate are these conversions?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'All conversions use exact or scientifically precise values. For example, 1 inch = 2.54 cm exactly (an internationally defined standard). Temperature conversions use the exact formulas defined by international standards bodies. Rounding only occurs in the display, not in the calculation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the easiest way to convert Celsius to Fahrenheit quickly?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Double the Celsius temperature and add 30 for a fast estimate. Example: 20°C → 40 + 30 = 70°F (actual: 68°F). For a more accurate result, multiply by 1.8 and add 32.',
+      },
+    },
+  ],
 }
 
 interface UnitConversion {
@@ -32,6 +88,10 @@ const categoryDescriptions: Record<string, string> = {
 
 export default function UnitConverterIndex() {
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
         Unit Converter
@@ -131,5 +191,6 @@ export default function UnitConverterIndex() {
         </div>
       </section>
     </div>
+    </>
   )
 }

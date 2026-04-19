@@ -44,6 +44,7 @@ const GAS_CARS = [
 ]
 
 const YEARS_OPTIONS = [5, 10] as const
+const KM_PER_MILE = 1.60934
 
 function getSubRegions(code: string): SubRegion[] {
   const e = elecData[code]
@@ -68,6 +69,7 @@ export function TCOCalculator() {
   const [regionCode, setRegionCode] = useState('us')
   const [subRegion, setSubRegion] = useState('CA')
   const [annualMiles, setAnnualMiles] = useState(12000)
+  const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles')
   const [years, setYears] = useState<5 | 10>(5)
   const [evId, setEvId] = useState(allModels[0]?.id ?? '')
   const [evPrice, setEvPrice] = useState(40000)
@@ -82,7 +84,6 @@ export function TCOCalculator() {
   const elecEntry = elecData[regionCode]
   const subRegions = getSubRegions(regionCode)
   const currencySymbol = elecEntry?.symbol ?? '$'
-  const distanceUnit = elecEntry?.distanceUnit ?? 'miles'
   const electricityRate = getElecRate(regionCode, subRegion)
   const rawGasPrice = getGasPrice(regionCode, subRegion)
   const gasPricePerGallon =
@@ -121,6 +122,18 @@ export function TCOCalculator() {
   const handleRegionChange = (code: string) => {
     setRegionCode(code)
     setSubRegion(getSubRegions(code)[0]?.code ?? '')
+    const unit = (elecData[code]?.distanceUnit ?? 'miles') as 'miles' | 'km'
+    setDistanceUnit(unit)
+  }
+
+  const handleUnitToggle = (newUnit: 'miles' | 'km') => {
+    if (newUnit === distanceUnit) return
+    setAnnualMiles((prev) =>
+      newUnit === 'km'
+        ? Math.round(prev * KM_PER_MILE)
+        : Math.round(prev / KM_PER_MILE),
+    )
+    setDistanceUnit(newUnit)
   }
 
   return (
@@ -151,11 +164,33 @@ export function TCOCalculator() {
             </div>
           )}
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1.5">
-              Annual Distance ({distanceUnit})
-            </label>
+            <div className="flex items-center justify-between mb-1.5 gap-2">
+              <label className="block text-xs font-medium text-muted-foreground">
+                Annual Distance ({distanceUnit})
+              </label>
+              <div className="inline-flex rounded-md border border-border bg-background p-0.5">
+                {(['miles', 'km'] as const).map((u) => (
+                  <button
+                    key={u}
+                    type="button"
+                    onClick={() => handleUnitToggle(u)}
+                    className={`px-2 py-0.5 text-[11px] font-medium rounded transition-colors ${
+                      distanceUnit === u
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    aria-pressed={distanceUnit === u}
+                    aria-label={`Switch to ${u}`}
+                  >
+                    {u}
+                  </button>
+                ))}
+              </div>
+            </div>
             <input type="number" value={annualMiles} onChange={(e) => setAnnualMiles(Number(e.target.value))}
-              min={1000} max={50000} step={1000}
+              min={distanceUnit === 'miles' ? 1000 : 1600}
+              max={distanceUnit === 'miles' ? 50000 : 80000}
+              step={distanceUnit === 'miles' ? 1000 : 1000}
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm" />
           </div>
           <div>

@@ -51,6 +51,29 @@ export default async function FoodPage({ params }: Props) {
     .filter((p) => p.id !== slug && p.category === preset.category && p.airFryer)
     .slice(0, 4)
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cal.utilverse.info' },
+      { '@type': 'ListItem', position: 2, name: 'Air Fryer Calculator', item: 'https://cal.utilverse.info/air-fryer-calculator' },
+      { '@type': 'ListItem', position: 3, name: preset.name, item: `https://cal.utilverse.info/air-fryer-calculator/${preset.id}` },
+    ],
+  }
+
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to Cook ${preset.name} in an Air Fryer`,
+    description: `Cook ${preset.name} in an air fryer at ${preset.airFryer.tempF}°F for ${formatTime(preset.airFryer.timeMin)}.`,
+    totalTime: `PT${preset.airFryer.timeMin}M`,
+    step: [
+      { '@type': 'HowToStep', name: 'Preheat', text: `Preheat the air fryer to ${preset.airFryer.tempF}°F (${fToC(preset.airFryer.tempF)}°C) for 3 minutes.` },
+      { '@type': 'HowToStep', name: 'Cook', text: `Place ${preset.name} in a single layer in the basket and cook for ${formatTime(preset.airFryer.timeMin)}, shaking or flipping halfway through.` },
+      { '@type': 'HowToStep', name: 'Check', text: 'Check for doneness and adjust time if needed. Serve immediately for best texture.' },
+    ],
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -84,6 +107,8 @@ export default async function FoodPage({ params }: Props) {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

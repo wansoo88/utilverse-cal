@@ -6,6 +6,8 @@ import { Footer } from '@/components/layout/footer'
 import { GA4 } from '@/components/analytics/ga4'
 import './globals.css'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info'
+
 export const metadata: Metadata = {
   title: {
     default: 'utilverse — Free Online Calculators & Tools',
@@ -13,13 +15,71 @@ export const metadata: Metadata = {
   },
   description:
     'Free, accurate online calculators for EV charging costs, air fryer conversions, 3D printing costs, and more. Built with real data.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info'),
+  keywords: [
+    'online calculator',
+    'ev charging cost calculator',
+    'ev vs gas calculator',
+    'air fryer conversion',
+    '3d printing cost',
+    'unit converter',
+    'free calculator',
+  ],
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     siteName: 'utilverse',
+    url: SITE_URL,
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'utilverse — Free Online Calculators & Tools',
+      },
+    ],
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/og-default.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'utilverse',
+  url: SITE_URL,
+  logo: `${SITE_URL}/og-default.png`,
+  description:
+    'Free online calculators and conversion tools built with real public data.',
+  sameAs: [],
+}
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'utilverse',
+  url: SITE_URL,
+  description:
+    'Free online calculators for EV charging, air fryer conversion, 3D printing costs, and unit conversion.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'utilverse',
+    url: SITE_URL,
   },
 }
 
@@ -31,6 +91,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <GA4 />
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
           <Script
