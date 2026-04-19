@@ -45,9 +45,9 @@ module.exports = {
     return { loc: path, changefreq: 'monthly', priority: 0.5, lastmod: new Date().toISOString() }
   },
 
-  // Generate separate sitemaps per section
+  // Single sitemap.xml (no index) — URL count is well under sitemapSize limit
   outDir: 'public',
-  generateIndexSitemap: true,
+  generateIndexSitemap: false,
 
   // Exclude internal Next.js paths
   exclude: ['/_not-found', '/404'],
