@@ -7,6 +7,16 @@ import type { FoodPreset } from '@/lib/airfryer/types'
 
 const allPresets = presets as FoodPreset[]
 
+// ── Category guide content ────────────────────────────────────────────────────
+const CATEGORY_GUIDES: Record<string, string> = {
+  Poultry: 'Poultry is one of the best foods to cook in an air fryer. The circulating hot air crisps the skin beautifully without added oil, while keeping the inside juicy — something that is surprisingly hard to achieve in a conventional oven without drying out the meat. The key is not overcrowding the basket: chicken pieces need space around them for the hot air to circulate on all sides. Always check that the thickest part reaches an internal temperature of 165°F (74°C) before serving. If the exterior is browning faster than the inside is cooking through, lower the temperature by 10–15°F and add a few minutes.',
+  Meat: 'Meat cooks faster in an air fryer than in a conventional oven because the compact chamber delivers heat from all directions simultaneously. Thin cuts — like hamburgers, pork chops, or steak strips — are ideal for air frying. Thicker cuts benefit from a lower temperature to ensure even cooking without burning the outside before the center is done. For best results, bring the meat to room temperature before cooking, pat it dry so the surface browns instead of steams, and flip halfway through. Ground meat dishes like meatballs cook particularly well since the air crisps all sides evenly.',
+  Seafood: 'Seafood is delicate and cooks quickly, making the air fryer an excellent choice for fish fillets, shrimp, and scallops. The high heat seals the exterior fast, locking in moisture and producing a light crust without deep frying. Most fish fillets are done in 8–12 minutes at 375–400°F — significantly faster than oven baking. The most common mistake with air-fried seafood is overcooking: fish is done when it flakes easily with a fork and reaches 145°F (63°C) internally. Shrimp are cooked when they turn pink and curl into a C shape. Avoid marinating seafood in acidic liquids (lemon juice, vinegar) for more than 15 minutes before air frying — it starts to chemically cook the protein.',
+  Vegetables: 'Vegetables transform in an air fryer: the rapid airflow removes surface moisture and caramelizes natural sugars, producing edges that are crispy and slightly charred while the interior stays tender. This is the same Maillard reaction you get on a grill or in a very hot oven, but faster and with less oil — typically 1–2 teaspoons per portion is enough. Dense vegetables like carrots, broccoli, and Brussels sprouts need more time than thin or leafy ones. Cut vegetables into similar sizes for even cooking, and toss them with a light coating of oil and seasoning before cooking. Shake the basket halfway through to prevent sticking and ensure even browning.',
+  Sides: 'Side dishes — from crispy fries to stuffed mushrooms to roasted corn — are where the air fryer really earns its place on the counter. The appliance excels at anything that benefits from a crispy exterior: french fries use up to 75% less oil than deep-frying while achieving comparable crunch. Frozen sides like onion rings, tater tots, and mozzarella sticks cook faster and crispier in an air fryer than in a conventional oven. For best results with starchy sides, do not crowd the basket — a single layer is critical. If you are cooking in batches, keep the first batch warm in a 200°F oven while the second batch cooks.',
+  Frozen: 'Frozen foods are arguably the air fryer\'s strongest use case. The intense dry heat from all directions defrosts and cooks simultaneously, producing a crispy result that a microwave cannot match and matching — or exceeding — a conventional oven in a fraction of the time. Most frozen foods cook 25–40% faster in an air fryer. Do not thaw frozen items before air frying unless the recipe specifically calls for it — cooking from frozen gives better texture. There is no need to preheat for most frozen items, though preheating for 3 minutes can improve crispiness on items like frozen fries and nuggets. Always cook from frozen in a single layer for even results.',
+}
+
 export function generateStaticParams() {
   return allPresets
     .filter((p) => p.airFryer !== null)
@@ -34,6 +44,8 @@ export default async function FoodPage({ params }: Props) {
   const { slug } = await params
   const preset = allPresets.find((p) => p.id === slug)
   if (!preset || !preset.airFryer) notFound()
+
+  const categoryGuide = CATEGORY_GUIDES[preset.category] ?? null
 
   const related = allPresets
     .filter((p) => p.id !== slug && p.category === preset.category && p.airFryer)
@@ -213,6 +225,16 @@ export default async function FoodPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {/* Category guide */}
+        {categoryGuide && (
+          <section className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-foreground mb-3">
+              Air frying {preset.category.toLowerCase()}: what you need to know
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">{categoryGuide}</p>
+          </section>
+        )}
 
         {/* Related foods */}
         {related.length > 0 && (
