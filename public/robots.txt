@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://cal.utilverse.info/sitemap.xml
+Sitemap: https://cal.utilverse.info/sitemap-v2.xml

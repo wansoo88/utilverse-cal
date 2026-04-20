@@ -12,6 +12,7 @@ module.exports = {
 
   outDir: 'public',
   generateIndexSitemap: false,
+  sitemapBaseFileName: 'sitemap-v2',
 
   // Exclude internal Next.js paths & OG/twitter image endpoints
   exclude: ['/_not-found', '/404', '/opengraph-image', '/twitter-image'],
