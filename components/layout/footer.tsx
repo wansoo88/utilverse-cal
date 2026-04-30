@@ -87,9 +87,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} utilverse.info. All rights reserved.
-          Data sourced from EIA.gov, fueleconomy.gov, and EPA.
+        <div className="mt-10 border-t border-border pt-8 text-center text-xs text-muted-foreground space-y-2">
+          <p>
+            © {new Date().getFullYear()} utilverse.info. All rights reserved.
+            Data sourced from EIA.gov, fueleconomy.gov, and EPA.
+          </p>
+          <p>
+            As an Amazon Associate utilverse earns from qualifying purchases. Some links on this
+            site are affiliate links — see our{' '}
+            <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-foreground">
+              privacy policy
+            </Link>{' '}
+            for details.
+          </p>
         </div>
       </div>
     </footer>

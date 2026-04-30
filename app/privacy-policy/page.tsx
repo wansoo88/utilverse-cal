@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight">Privacy Policy</h1>
-      <p className="mt-2 text-sm text-muted-foreground">Last updated: March 2026</p>
+      <p className="mt-2 text-sm text-muted-foreground">Last updated: May 2026</p>
 
       <div className="mt-8 space-y-6 text-base text-muted-foreground leading-relaxed">
         <p>
@@ -54,10 +54,28 @@ export default function PrivacyPolicyPage() {
           <li>Google AdSense — advertising (pending approval)</li>
           <li>Formspree — contact form processing</li>
           <li>Open Charge Map API — EV charging station data</li>
-          <li>OpenStreetMap — map tiles</li>
+          <li>OpenStreetMap / Nominatim — map tiles and location lookup</li>
+          <li>Amazon Associates — affiliate program for product recommendations</li>
           <li>Vercel — website hosting</li>
         </ul>
         <p>Each of these services has its own privacy policy governing their data practices.</p>
+
+        <h2 className="text-xl font-semibold text-foreground pt-2">Affiliate disclosure</h2>
+        <p>
+          Some pages on cal.utilverse.info contain affiliate links — primarily through the Amazon
+          Associates program. If you click an affiliate link and make a purchase, we may earn a
+          small commission at no extra cost to you. Affiliate links are clearly labeled. We only
+          recommend products we believe are relevant and useful for the calculator&apos;s topic.
+          Affiliate revenue helps keep the site free for everyone.
+        </p>
+
+        <h2 className="text-xl font-semibold text-foreground pt-2">Location data</h2>
+        <p>
+          The EV Charging Calculator includes an optional &quot;Find Chargers Near You&quot; map.
+          When you click &quot;Use My Location&quot; we ask your browser for your current GPS
+          coordinates, which are used only to query the Open Charge Map API for nearby stations.
+          We do not store, log, or transmit your location to our own servers.
+        </p>
 
         <h2 className="text-xl font-semibold text-foreground pt-2">GDPR (EU users)</h2>
         <p>

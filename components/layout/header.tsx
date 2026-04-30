@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Menu, X, Zap, ChefHat, Printer, Calculator, Ruler, Car } from 'lucide-react'
 import { ThemeToggle } from './theme-toggle'
 
@@ -41,6 +41,26 @@ const tools = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [toolsOpen, setToolsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown on outside click or Escape key
+  useEffect(() => {
+    if (!toolsOpen) return
+    function handleClick(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setToolsOpen(false)
+      }
+    }
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setToolsOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [toolsOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
@@ -55,31 +75,39 @@ export function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex">
-          <div className="relative">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+          <div className="relative" ref={dropdownRef}>
             <button
-              onMouseEnter={() => setToolsOpen(true)}
-              onMouseLeave={() => setToolsOpen(false)}
-              className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              type="button"
+              onClick={() => setToolsOpen((o) => !o)}
+              aria-expanded={toolsOpen}
+              aria-haspopup="menu"
+              className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Calculator className="h-4 w-4" />
               Tools
-              <svg className="h-3 w-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className={`h-3 w-3 opacity-60 transition-transform ${toolsOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
             {toolsOpen && (
               <div
-                onMouseEnter={() => setToolsOpen(true)}
-                onMouseLeave={() => setToolsOpen(false)}
+                role="menu"
                 className="absolute left-0 top-full mt-1 w-72 rounded-xl border border-border bg-card p-2 shadow-lg"
               >
                 {tools.map((tool) => (
                   <Link
                     key={tool.href}
                     href={tool.href}
-                    className="flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-muted"
+                    role="menuitem"
+                    className="flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-muted focus:outline-none focus-visible:bg-muted"
                     onClick={() => setToolsOpen(false)}
                   >
                     <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -113,9 +141,11 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
+            type="button"
             className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

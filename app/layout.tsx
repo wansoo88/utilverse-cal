@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { ThemeProvider } from '@/components/layout/theme-provider'
 import { Header } from '@/components/layout/header'
@@ -7,6 +7,13 @@ import { GA4 } from '@/components/analytics/ga4'
 import './globals.css'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cal.utilverse.info'
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+  ],
+}
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +56,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: '/site.webmanifest',
 }
 
 const organizationJsonLd = {
@@ -93,7 +101,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <GA4 />
-        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
+        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.startsWith('ca-pub-') && (
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}

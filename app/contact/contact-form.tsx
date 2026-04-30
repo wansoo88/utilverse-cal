@@ -100,7 +100,7 @@ export function ContactForm() {
 
       {status === 'error' && (
         <p className="text-sm text-destructive">
-          Something went wrong. Please try again or email us directly.
+          Something went wrong sending your message. Please try again in a moment.
         </p>
       )}
 

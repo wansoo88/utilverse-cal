@@ -97,6 +97,12 @@ export function calculateTCO(input: TCOInput): TCOResult {
   let breakevenYear: number | null = null
   let breakevenMonths: number | null = null
 
+  // If EV starts cheaper (negative or zero priceDiff), breakeven is immediate (year 0)
+  if (priceDiff <= 0) {
+    breakevenYear = 0
+    breakevenMonths = 0
+  }
+
   for (let y = 1; y <= years; y++) {
     evCumulative += evAnnualTotal
     gasCumulative += gasAnnualTotal
@@ -108,25 +114,21 @@ export function calculateTCO(input: TCOInput): TCOResult {
       gasAnnual: Math.round(gasAnnualTotal),
     })
 
-    // Check breakeven (when EV cumulative drops below gas cumulative)
+    // Check breakeven (when EV cumulative drops to or below gas cumulative)
     if (breakevenYear === null && evCumulative <= gasCumulative) {
       breakevenYear = y
       // Interpolate months within the year
       const prevEvCum = evCumulative - evAnnualTotal
       const prevGasCum = gasCumulative - gasAnnualTotal
-      const annualDiff = (gasAnnualTotal - evAnnualTotal)
+      const annualDiff = gasAnnualTotal - evAnnualTotal
       if (annualDiff > 0) {
-        const remaining = prevEvCum - prevGasCum
-        const monthsInYear = Math.ceil((remaining / annualDiff) * 12)
+        const remaining = Math.max(0, prevEvCum - prevGasCum)
+        const monthsInYear = Math.max(0, Math.min(12, Math.ceil((remaining / annualDiff) * 12)))
         breakevenMonths = (y - 1) * 12 + monthsInYear
+      } else {
+        breakevenMonths = y * 12
       }
     }
-  }
-
-  // If EV starts cheaper (negative priceDiff), breakeven is immediate
-  if (priceDiff <= 0 && breakevenYear === null) {
-    breakevenYear = 0
-    breakevenMonths = 0
   }
 
   const evTotal = yearlyData[years - 1]?.evCumulative ?? evNetPrice

@@ -9,6 +9,7 @@ const LeafletMap = dynamic(() => import('./leaflet-map'), { ssr: false })
 
 const RADIUS_OPTIONS = [10, 25, 50] as const
 const OCM_API_KEY = process.env.NEXT_PUBLIC_OCM_API_KEY ?? ''
+const OCM_AVAILABLE = OCM_API_KEY.length > 0
 
 export function ChargerFinderMap() {
   const [stations, setStations] = useState<ChargerStation[]>([])
@@ -60,7 +61,7 @@ export function ChargerFinderMap() {
 
   function handleUseMyLocation() {
     if (!OCM_API_KEY) {
-      setError('OCM API key is not configured. Please add NEXT_PUBLIC_OCM_API_KEY to your .env.local file.')
+      setError('Charger search is temporarily unavailable. Please try again later.')
       return
     }
     if (!navigator.geolocation) {
@@ -77,7 +78,7 @@ export function ChargerFinderMap() {
   async function handleZipSearch() {
     if (!zipInput.trim()) return
     if (!OCM_API_KEY) {
-      setError('OCM API key is not configured. Please add NEXT_PUBLIC_OCM_API_KEY to your .env.local file.')
+      setError('Charger search is temporarily unavailable. Please try again later.')
       return
     }
     setLoading(true)
@@ -116,7 +117,7 @@ export function ChargerFinderMap() {
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <button
             onClick={handleUseMyLocation}
-            disabled={loading}
+            disabled={loading || !OCM_AVAILABLE}
             className="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
           >
             <span>📍</span> Use My Location
@@ -128,17 +129,25 @@ export function ChargerFinderMap() {
               value={zipInput}
               onChange={(e) => setZipInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleZipSearch()}
-              className="flex-1 rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              disabled={!OCM_AVAILABLE}
+              aria-label="Location search"
+              className="flex-1 rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
             />
             <button
               onClick={handleZipSearch}
-              disabled={loading || !zipInput.trim()}
+              disabled={loading || !zipInput.trim() || !OCM_AVAILABLE}
               className="rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent disabled:opacity-50"
             >
               Search
             </button>
           </div>
         </div>
+
+        {!OCM_AVAILABLE && (
+          <div className="mb-4 rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+            Live charger search is currently unavailable. The cost calculator above still works.
+          </div>
+        )}
 
         {/* Filters + radius */}
         <div className="flex flex-wrap items-center gap-2 mb-4">

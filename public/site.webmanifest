@@ -1,0 +1,10 @@
+{
+  "name": "utilverse — Free Online Calculators & Tools",
+  "short_name": "utilverse",
+  "description": "Free, accurate online calculators for EV charging costs, air fryer conversions, 3D printing costs, and more.",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "icons": []
+}

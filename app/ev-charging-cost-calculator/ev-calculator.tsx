@@ -157,9 +157,10 @@ export function EVCalculator() {
 
   function handleRatioChange(key: keyof ChargingRatio, val: number) {
     const others = Object.keys(chargingRatio).filter((k) => k !== key) as (keyof ChargingRatio)[]
-    const remaining = 1 - val
+    const clampedVal = Math.max(0, Math.min(1, val))
+    const remaining = Math.max(0, 1 - clampedVal)
     const otherSum = others.reduce((s, k) => s + chargingRatio[k], 0)
-    const newRatio = { ...chargingRatio, [key]: val }
+    const newRatio = { ...chargingRatio, [key]: clampedVal }
     if (otherSum > 0) {
       others.forEach((k) => {
         newRatio[k] = (chargingRatio[k] / otherSum) * remaining
@@ -167,6 +168,13 @@ export function EVCalculator() {
     } else {
       const share = remaining / others.length
       others.forEach((k) => { newRatio[k] = share })
+    }
+    // Normalize to ensure exact sum of 1 (avoid floating-point drift)
+    const total = newRatio.home + newRatio.publicL2 + newRatio.dcFast
+    if (total > 0 && Math.abs(total - 1) > 1e-6) {
+      newRatio.home /= total
+      newRatio.publicL2 /= total
+      newRatio.dcFast /= total
     }
     setChargingRatio(newRatio)
   }
@@ -234,7 +242,7 @@ export function EVCalculator() {
                 value={vehicleId}
                 onChange={(e) => setVehicleId(e.target.value)}
                 className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                size={4}
+                aria-label="Select vehicle"
               >
                 {filteredVehicles.map((v) => (
                   <option key={v.id} value={v.id}>
